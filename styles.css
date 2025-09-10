@@ -1101,3 +1101,68 @@ header {
     height: 220px;
   }
 }
+/* === NAVBAR === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #6b3a2c;
+  padding: 12px 20px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffd59e;
+}
+
+/* Botón hamburguesa */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #6b3a2c;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 15px;
+    border-radius: 0 0 0 12px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
