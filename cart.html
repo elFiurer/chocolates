@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carrito — MONTCAO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="cart-page">
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="brand">
+        <a class="logo-link" href="index.html">
+          <h1 class="logo">MONTCAO</h1>
+        </a>
+      </div>
+
+      <nav class="top-nav">
+        <ul>
+          <li><a href="index.html#productos" class="nav-link">Productos</a></li>
+          <li><a href="index.html#historia" class="nav-link">Historia</a></li>
+          <li><a href="index.html#reseñas" class="nav-link">Reseñas</a></li>
+        </ul>
+      </nav>
+
+      <div class="social-cards">
+        <a class="social-card tiktok" href="https://www.tiktok.com" target="_blank" rel="noopener">
+          <div class="icon">TikTok</div>
+          <div class="label">Síguenos</div>
+        </a>
+
+        <a class="social-card instagram" href="https://www.instagram.com" target="_blank" rel="noopener">
+          <div class="icon">Instagram</div>
+          <div class="label">Síguenos</div>
+        </a>
+
+        <a class="social-card cart-link" href="cart.html">
+          <div class="icon">🛒</div>
+          <div class="label">Carrito</div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="cart-page">
+      <h2>Tu carrito</h2>
+      <div id="cart-page-items" class="cart-page-items">
+        <p class="empty">El carrito está vacío. Ve a la <a href="index.html#productos">tienda</a> y agrega productos.</p>
+      </div>
+
+      <div class="cart-summary-page" id="cart-summary-page" style="display:none;">
+        <div class="summary-box">
+          <div class="row"><span>Subtotal</span><span id="page-subtotal">S/ 0.00</span></div>
+          <div class="row"><span>Envío</span><span id="page-shipping">S/ 0.00</span></div>
+          <div class="row total"><strong>Total</strong><strong id="page-total">S/ 0.00</strong></div>
+          <div style="margin-top:12px;">
+            <p><strong>Métodos de pago</strong></p>
+            <ul>
+              <li>Yape: +51 9XXXXXXXX (reemplaza por tu número real)</li>
+              <li>BCP: 001-12345678-0 — MONTCAO SAC</li>
+              <li>Interbank: 123-4567890 — MONTCAO SAC</li>
+              <li>BBVA: 987-654321 — MONTCAO SAC</li>
+            </ul>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <button id="page-whatsapp" class="btn whatsapp">Enviar pedido por WhatsApp</button>
+            <button id="clear-cart" class="btn outline">Vaciar carrito</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>Personaliza cuentas y número de WhatsApp en el JS.</small>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
