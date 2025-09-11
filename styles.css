@@ -1356,3 +1356,50 @@ button {
     grid-template-columns: 1fr; /* Una columna para los pasos del proceso */
   }
 }
+
+/* ===========================
+   AJUSTES ESPECIALES PARA MÓVILES (checkout)
+   =========================== */
+@media (max-width: 768px) {
+  /* Reducir padding general */
+  .checkout-flow > * {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Resumen del pedido */
+  .summary-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .summary-item-img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Métodos de pago: de 3 columnas a 1 columna */
+  .payment-methods {
+    grid-template-columns: 1fr !important;
+  }
+
+  .payment-card {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Texto más pequeño en móviles */
+  .payment-card-body {
+    font-size: 0.9rem;
+  }
+
+  /* Botón de WhatsApp full width */
+  .btn-whatsapp {
+    font-size: 1rem;
+    padding: 0.8rem;
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .hero-video-wrapper .hero-img {
+    content: url('imagen/portada-mobile.jpg');
+  }
+}
