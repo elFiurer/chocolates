@@ -138,6 +138,24 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSideCart();
     new Swiper('.review-slider', { loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true } });
 
+    // --- Lógica para el Menú Hamburguesa ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const pageLinks = document.querySelectorAll('.nav-links a'); // Selecciona todos los links del menú
+
+    // 1. Abre y cierra el menú al hacer clic en la hamburguesa
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // 2. Cierra el menú automáticamente al hacer clic en un enlace
+    pageLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+    });
     catalogGrid.addEventListener('click', e => {
       const card = e.target.closest('.product-card');
       if (!card) return;

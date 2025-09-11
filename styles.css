@@ -1280,3 +1280,68 @@ button {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
 }
 */
+/* ===========================================
+   7. AJUSTES FINALES PARA DISPOSITIVOS MÓVILES
+   =========================================== */
+
+/* --- Tablets y Móviles (hasta 992px) --- */
+@media (max-width: 992px) {
+  /* Hacemos que la navegación principal se transforme */
+  .nav-links {
+    position: fixed; /* Se posiciona sobre todo el contenido */
+    top: 0;
+    right: 0;
+    width: 80%; /* Ocupa el 80% del ancho de la pantalla */
+    max-width: 350px; /* Ancho máximo para no ser demasiado grande */
+    height: 100vh; /* Ocupa toda la altura */
+    background-color: var(--color-white); /* Fondo blanco */
+    
+    /* Centramos los enlaces verticalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem; /* Aumentamos el espacio entre enlaces */
+    
+    /* Por defecto, está oculto fuera de la pantalla a la derecha */
+    transform: translateX(100%);
+    transition: transform 0.35s ease-in-out;
+    
+    /* Sombra para darle un efecto de profundidad */
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 1500; /* Se asegura que esté por encima de otros elementos */
+  }
+
+  /* Esta clase 'active' hará que el menú sea visible */
+  .nav-links.active {
+    transform: translateX(0); /* Lo trae a la vista */
+  }
+
+  /* Hacemos la fuente de los enlaces más grande para el móvil */
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+
+  /* Mostramos el botón de hamburguesa en dispositivos móviles */
+  .hamburger {
+    display: block;
+    z-index: 1600; /* Debe estar por encima del menú para poder cerrarlo */
+  }
+
+  /* Ocultamos los botones de redes sociales del escritorio */
+  .header-socials-desktop {
+    display: none;
+  }
+
+  /* Ajustes generales para una mejor vista en móvil */
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+  .story-image {
+    display: block; /* Aseguramos que la imagen de la historia se vea */
+    order: -1; /* La colocamos antes del texto */
+  }
+  .process-grid {
+    grid-template-columns: 1fr; /* Una columna para los pasos del proceso */
+  }
+}
