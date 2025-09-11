@@ -225,10 +225,31 @@ button {
   height: 80px;
 }
 
+/* Estilos para el logo principal */
 .logo {
-  font-family: var(--font-headings);
-  font-size: 2rem;
-  font-weight: 700;
+    /* Para Dancing Script: */
+    font-family: 'Dancing Script', cursive; /* Aplica la fuente */
+    /* Para Great Vibes: */
+    /* font-family: 'Great Vibes', cursive; */ /* Descomenta esta si usas Great Vibes */
+
+    font-size: 2.8rem; /* Tamaño más grande para que destaque */
+    font-weight: 700; /* Negrita para Dancing Script, Great Vibes no lo necesita tanto */
+    color: var(--color-primary); /* Usa tu color principal o un dorado/bronce */
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.7), /* Un brillo sutil blanco */
+        0 0 10px rgba(255, 255, 255, 0.5), /* Otro brillo más extendido */
+        0 0 15px rgba(255, 255, 255, 0.3); /* Un halo más suave */
+    letter-spacing: 2px; /* Espaciado entre letras para elegancia */
+    transition: transform 0.3s ease-in-out; /* Animación sutil al pasar el mouse */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
+    color: #d4af37; /* Podrías cambiar a un dorado más intenso en hover */
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.9),
+        0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 25px rgba(255, 255, 255, 0.5);
 }
 
 .nav-links {
@@ -397,12 +418,13 @@ button {
 .product-image-container {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .product-image {
   width: 100%;
-  height: 280px;
-  object-fit: cover;
+  height: 340px; /* Aumenta este valor hasta que la imagen se vea como deseas */
+  object-fit: cover; 
   transition: transform 0.5s ease;
 }
 
@@ -411,16 +433,7 @@ button {
 }
 
 .quick-view-btn {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  color: var(--color-white);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  opacity: 0;
-  transition: var(--transition-smooth);
+  display: none;
 }
 
 .product-card:hover .quick-view-btn {
@@ -826,77 +839,50 @@ button {
   }
 }
 
-/* --- Móviles (hasta 768px) --- */
+/* ===========================================
+   CORRECCIÓN FINAL PARA ICONOS SOCIALES RESPONSIVOS
+   =========================================== */
+
+/* --- VISTA DE ESCRITORIO (POR DEFECTO) --- */
+
+/* 1. Ocultamos la versión móvil de los enlaces sociales */
+.nav-socials-mobile {
+  display: none;
+}
+
+/* 2. Mostramos la versión de escritorio */
+.header-socials-desktop {
+  display: flex;
+  gap: 12px;
+}
+
+/* --- VISTA MÓVIL (hasta 768px de ancho) --- */
 @media (max-width: 768px) {
-  html {
-    font-size: 15px;
+  /* 1. Ocultamos la versión de escritorio */
+  .header-socials-desktop {
+    display: none;
   }
 
-  h1 {
-    font-size: 2.5rem;
+  /* 2. Mostramos la versión móvil DENTRO del menú hamburguesa */
+  .nav-socials-mobile {
+    display: block; /* Cambiamos de none a block para que sea visible */
+    margin-top: 20px;
+  }
+  
+  .nav-socials-mobile .social-btn {
+      margin-bottom: 15px;
+      justify-content: center; /* Centramos el contenido del botón */
   }
 
-  h2 {
-    font-size: 2rem;
-  }
-
-  .section-padding {
-    padding: 3rem 0;
-  }
-
-  /* --- Header & Nav Móvil --- */
-  .nav-links {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translateX(-100%);
-    transition: transform 0.4s ease-in-out;
-  }
-
-  .nav-links.active {
-    transform: translateX(0);
-  }
-
-  .nav-links a {
-    font-size: 1.5rem;
-  }
-
-  .hamburger {
-    display: block;
-    z-index: 1001;
-  }
-
-  /* --- Secciones --- */
-  .process-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .catalog-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-image-gallery {
-    max-height: 250px;
-    overflow: hidden;
-  }
-
-  /* --- Carrito Móvil --- */
-  .side-cart {
-    width: 90%;
-    max-width: 350px;
+  /* Separador para el menú móvil */
+  .nav-separator {
+    width: 80%;
+    margin: 15px auto;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.1);
   }
 }
+
 
 /* ===========================================
    6. ESTILOS PÁGINA DE CHECKOUT (CÓDIGO UNIFICADO FINAL)
@@ -1104,3 +1090,193 @@ button {
   width: 30px;
   height: 30px;
 }
+/* --- Estilos para acciones en el resumen de pedido --- */
+.summary-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.summary-item-actions .quantity-selector {
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.summary-item-actions .remove-item-btn {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.summary-item-actions .remove-item-btn:hover {
+  color: #c94a4a; /* Color rojo al pasar el mouse */
+}
+/* ===========================================
+   MEJORA VISUAL PARA EL BOTÓN 'ELIMINAR' EN CHECKOUT
+   =========================================== */
+
+.summary-item-actions .remove-item-btn {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #c94a4a; /* Un tono de rojo sutil */
+  background-color: #fce8e8; /* Fondo rojo muy claro */
+  padding: 6px 12px;
+  border-radius: 20px; /* Bordes redondeados estilo "píldora" */
+  border: 1px solid #f8d7da;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.summary-item-actions .remove-item-btn:hover {
+  background-color: #c94a4a; /* Fondo rojo más oscuro al pasar el mouse */
+  color: var(--color-white); /* Texto blanco */
+  border-color: #c94a4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+/* ===========================================
+   MEJORA VISUAL PARA EL BOTÓN 'QUITAR' EN EL CARRITO LATERAL
+   =========================================== */
+
+.cart-item-actions .remove-item-btn {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #c94a4a; /* Un tono de rojo sutil */
+  background-color: #fce8e8; /* Fondo rojo muy claro */
+  padding: 6px 12px;
+  border-radius: 20px; /* Bordes redondeados */
+  border: 1px solid #f8d7da;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.cart-item-actions .remove-item-btn:hover {
+  background-color: #c94a4a; /* Fondo rojo más oscuro al pasar el mouse */
+  color: var(--color-white); /* Texto blanco */
+  border-color: #c94a4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+/* ===========================================
+   NUEVO ESTILO DE BOTONES EN LA CABECERA
+   =========================================== */
+
+/* Contenedor principal de los íconos/botones en la cabecera */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Espacio entre los botones */
+}
+
+/* Estilo base para los botones de redes sociales */
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el ícono y el texto */
+  padding: 10px 20px;
+  border-radius: 50px; /* Esto crea la forma de píldora */
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Colores específicos para cada red social */
+.social-btn.tiktok {
+  background-color: #000000;
+}
+
+.social-btn.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+/* Nuevo estilo para el botón del carrito */
+#cart-button, .cart-button {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 50px; /* Misma forma de píldora */
+  padding: 10px;
+  position: relative;
+  width: 50px; /* Ancho fijo */
+  height: 42px; /* Alto fijo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+#cart-button:hover, .cart-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* Ajuste del contador del carrito */
+.cart-count {
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+}
+/* --- ESTILOS DEFINITIVOS PARA EL BOTÓN DE DESCARGA DEL CATÁLOGO --- */
+.download-catalog-btn {
+    display: block !important; /* Asegura que se comporte como un bloque */
+    width: 100% !important; /* Ocupa todo el ancho */
+    padding: 10px 15px !important; /* Espaciado interno */
+    margin-top: 15px !important; /* Aumentamos la separación */
+    background-color: var(--color-primary) !important; /* Fondo claro y distintivo */
+    color: var(--color-white) !important; /* Texto blanco sobre el fondo */
+    border: none !important; /* Sin borde para un aspecto más limpio */
+    border-radius: var(--border-radius) !important; /* Bordes redondeados */
+    text-align: center !important; /* Centra el texto */
+    font-size: 0.95rem !important; /* Fuente ligeramente más grande */
+    font-weight: 700 !important; /* Negrita para el texto del botón */
+    cursor: pointer !important; /* Indica que es clickeable */
+    transition: background-color 0.3s ease, transform 0.2s ease !important; /* Transición suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Sombra más pronunciada para un efecto 3D */
+}
+
+.download-catalog-btn:hover {
+    background-color: #6a4a3c !important; /* Un tono más oscuro de tu color primario en hover */
+    transform: translateY(-2px) !important; /* Ligero efecto de levantamiento */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important; /* Sombra más fuerte en hover */
+}
+
+/* Opcional: Si quieres un botón completamente gris, usa esto en vez de lo de arriba: */
+/*
+.download-catalog-btn {
+    display: block !important;
+    width: 100% !important;
+    padding: 10px 15px !important;
+    margin-top: 15px !important;
+    background-color: var(--color-light-gray) !important;
+    color: var(--color-dark-gray) !important;
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    text-align: center !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+.download-catalog-btn:hover {
+    background-color: var(--color-gray) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
+}
+*/
