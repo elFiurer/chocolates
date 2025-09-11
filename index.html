@@ -1,447 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MONTCAO — Chocolates Orgánicos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MONTCAO | Chocolates Orgánicos Premium</title>
+  <meta name="description" content="Descubre MONTCAO, chocolates orgánicos elaborados artesanalmente. Una experiencia de sabor única y sostenible.">
 
-  <!-- Tipografía cursiva bonita -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;600&display=swap"
-    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" />
-  <meta name="description"
-    content="MONTCAO — Chocolates orgánicos con almendras y bajo impacto en alza de azúcar. Compra online" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" href="styles.css">
 </head>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
-<body id="inicio"></body>
+<body>
 
-<body id="index-page">
+  <div class="announcement-bar">
+    <p>🍫 Envío GRATIS en pedidos superiores a S/ 80 a todo el Perú</p>
+  </div>
+
   <header class="site-header">
-    <div class="container header-grid">
-      <div class="logo">
-        <span class="brand-name">MONTCAO</span>
-
-      </div>
-
-
-      <nav class="top-nav">
-        <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#productos" class="nav-link">Productos</a></li>
-          <li><a href="#historia" class="nav-link">Historia</a></li>
-          <li><a href="#reseñas" class="nav-link">Reseñas</a></li>
-          <li><a href="#contacto" class="nav-link">Contacto</a></li>
-        </ul>
+    <div class="container header-container">
+      <a href="#" class="logo">MONTCAO</a>
+      <nav class="nav-links">
+        <a href="#process">Nuestro Proceso</a>
+        <a href="#productos">Tienda</a>
+        <a href="#story">Nuestra Historia</a>
       </nav>
-
-      <div class="social-cards">
-        <a class="social-card tiktok" href="https://www.tiktok.com" target="_blank" rel="noopener">
-          <div class="icon">TikTok</div>
-          <div class="label">Síguenos</div>
-        </a>
-
-        <a class="social-card instagram" href="https://www.instagram.com" target="_blank" rel="noopener">
-          <div class="icon">Instagram</div>
-          <div class="label">Síguenos</div>
-        </a>
-
-        <!-- Cart dropdown icon (desplegable) -->
-        <div class="cart-dropdown-wrapper">
-          <button id="cart-toggle" class="cart-icon" aria-expanded="false" aria-label="Abrir carrito">
-            <span class="cart-badge" id="cart-count">0</span>
-            🛒
-          </button>
-
-          <div id="cart-dropdown" class="cart-dropdown" aria-hidden="true">
-            <h4>Tu pedido</h4>
-            <div id="dropdown-items" class="dropdown-items">
-              <p class="empty">No hay productos aún.</p>
-            </div>
-            <div class="dropdown-footer">
-              <div class="row">
-                <span>Subtotal</span><span id="dd-subtotal">S/ 0.00</span>
-              </div>
-              <div style="display:flex;gap:8px;margin-top:8px;">
-                <a href="cart.html" class="btn small">Abrir carrito</a>
-                <button id="dd-whatsapp" class="btn small whatsapp">Enviar por WhatsApp</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div class="header-icons">
+        <button id="cart-button" class="cart-button">
+          🛒
+          <span id="cart-count" class="cart-count">0</span>
+        </button>
+        <button class="hamburger">&#9776;</button>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- Hero -->
-    <section id="hero" class="hero">
-      <div class="hero-container">
-        <div class="hero-content">
-          <h1>Chocolates <span>MONTCAO</span></h1>
-          <p>
-            Cacao orgánico seleccionado, combinaciones clásicas con almendras y frutas.
-            Presentaciones premium pensadas para regalar o disfrutar.
-          </p>
-          <div class="hero-buttons">
-            <a href="#productos" class="btn-primary">🍫 Ver variedades</a>
-            <a href="https://wa.me/51967122591" target="_blank" class="btn-whatsapp">💬 WhatsApp</a>
-          </div>
-        </div>
+  <main>
 
-        <div class="hero-image">
-          <img src="imagen/hero.jpg" alt="Chocolates MONTCAO">
-        </div>
+    <section id="hero">
+      <div class="hero-video-wrapper">
+        <video playsinline autoplay muted loop poster="placeholder-image.jpg">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-final-chocolate-piece-in-a-bath-of-chocolate-4235-large.mp4" type="video/mp4">
+        </video>
       </div>
-      <header class="navbar">
-        <div class="logo">MONTCAO</div>
-        <nav class="nav-links">
-          <a href="#inicio">Inicio</a>
-          <a href="#productos">Productos</a>
-          <a href="#historia">Historia</a>
-          <a href="#reseñas">Reseñas</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-        <div class="hamburger">&#9776;</div>
-      </header>
-
-    </section>
-
-    <section class="cacao-info">
-      <div class="cacao-container">
-        <!-- Columna de texto -->
-        <div class="cacao-text">
-          <h2>🌱 La importancia del cacao orgánico</h2>
-          <p>
-            El cacao orgánico es cultivado sin pesticidas ni químicos, preservando la
-            biodiversidad y respetando a los agricultores. En <strong>MONTCAO</strong>
-            creemos en un chocolate más puro, saludable y sostenible, que no solo deleita
-            tu paladar sino que también cuida del planeta.
-          </p>
-          <p>
-            Cada tableta es resultado de un compromiso con el comercio justo, apoyando
-            a comunidades locales y garantizando un producto de calidad superior.
-          </p>
-        </div>
-
-        <!-- Columna de video -->
-        <div class="cacao-video">
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/mXwUyAmOTCg"
-            title="Video sobre cacao orgánico" frameborder="0" allowfullscreen>
-          </iframe>
+      <div class="hero-content">
+        <h1>Sabor que Conecta con el Origen</h1>
+        <p>Chocolate orgánico artesanal, una pausa de lujo en tu día a día.</p>
+        <div class="hero-buttons">
+          <a href="#productos" class="btn btn-primary">Ver Productos</a>
+          <a href="#story" class="btn btn-secondary">Nuestra Historia</a>
         </div>
       </div>
     </section>
 
-
-    <section id="productos" class="productos">
-      <h3>Nuestras variedades</h3>
-      <div id="catalog" class="catalog-grid">
-
-        <!-- Quinua y Kiwicha -->
-        <article class="card">
-          <img src="imagen/quinua-kiwicha.jpg" alt="Chocolate Quinua y Kiwicha">
-          <h4>Quinua y Kiwicha</h4>
-          <p>Chocolate al 70% cacao con cereales andinos (Quinua y Kiwicha).</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
+    <section id="process" class="section-padding">
+      <div class="container text-center">
+        <h2 class="section-title">Del Cacao a tus Manos</h2>
+        <p class="section-subtitle">Un viaje de calidad y sostenibilidad en cada paso.</p>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="process-icon">🌱</div>
+            <h3>Cosecha Orgánica</h3>
+            <p>Seleccionamos a mano los mejores granos de cacao de cultivos sostenibles.</p>
           </div>
-          <button class="add-btn" data-id="quinua-kiwicha">Agregar al carrito</button>
-        </article>
-
-        <!-- Aguaymanto -->
-        <article class="card">
-          <img src="imagen/aguaymanto.jpg" alt="Chocolate Aguaymanto">
-          <h4>Aguaymanto</h4>
-          <p>Chocolate al 70% cacao con Aguaymanto.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
+          <div class="process-step">
+            <div class="process-icon">🔥</div>
+            <h3>Tostado Artesanal</h3>
+            <p>Tostamos los granos a la perfección para revelar sus notas de sabor más profundas.</p>
           </div>
-          <button class="add-btn" data-id="aguaymanto">Agregar al carrito</button>
-        </article>
-
-        <!-- Mix de Frutas -->
-        <article class="card">
-          <img src="imagen/mix-frutas.jpg" alt="Chocolate Mix de Frutas">
-          <h4>Mix de Frutas</h4>
-          <p>Chocolate al 70% cacao con mix de frutas.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
+          <div class="process-step">
+            <div class="process-icon">✨</div>
+            <h3>Elaboración Maestra</h3>
+            <p>Conchamos el chocolate durante horas para lograr una textura sedosa e inigualable.</p>
           </div>
-          <button class="add-btn" data-id="mix-frutas">Agregar al carrito</button>
-        </article>
-
-        <!-- Piña -->
-        <article class="card">
-          <img src="imagen/pina.jpg" alt="Chocolate Piña">
-          <h4>Piña</h4>
-          <p>Chocolate al 70% cacao con Piña.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
+          <div class="process-step">
+            <div class="process-icon">🎁</div>
+            <h3>Empaque Consciente</h3>
+            <p>Envolvemos cada tableta en materiales ecológicos, respetando nuestro planeta.</p>
           </div>
-          <button class="add-btn" data-id="pina">Agregar al carrito</button>
-        </article>
-
-        <!-- Cerezas -->
-        <article class="card">
-          <img src="imagen/cerezas.jpg" alt="Chocolate Cerezas">
-          <h4>Cerezas</h4>
-          <p>Chocolate al 70% cacao con Cerezas.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
-          </div>
-          <button class="add-btn" data-id="cerezas">Agregar al carrito</button>
-        </article>
-
-        <!-- Lúcuma -->
-        <article class="card">
-          <img src="imagen/lucuma.jpg" alt="Chocolate Lúcuma">
-          <h4>Lúcuma</h4>
-          <p>Chocolate al 70% cacao con Lúcuma.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
-          </div>
-          <button class="add-btn" data-id="lucuma">Agregar al carrito</button>
-        </article>
-
-        <!-- Chocolate Dark -->
-        <article class="card">
-          <img src="imagen/dark.jpg" alt="Chocolate Dark 70%">
-          <h4>Chocolate Dark</h4>
-          <p>Chocolate Dark al 70% cacao.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
-          </div>
-          <button class="add-btn" data-id="dark">Agregar al carrito</button>
-        </article>
-
-        <!-- Arándanos (70g) -->
-        <article class="card">
-          <img src="imagen/arandanos.jpg" alt="Chocolate Arándanos">
-          <h4>Arándanos</h4>
-          <p>Chocolate al 70% cacao con incrustaciones de Arándanos.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
-          </div>
-          <button class="add-btn" data-id="arandanos">Agregar al carrito</button>
-        </article>
-
-        <!-- Almendras -->
-        <article class="card">
-          <img src="imagen/almendras.jpg" alt="Chocolate Almendras">
-          <h4>Almendras</h4>
-          <p>Chocolate con leche al 50% cacao con granos de Almendra.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
-          </div>
-          <button class="add-btn" data-id="almendras">Agregar al carrito</button>
-        </article>
-
-        <!-- Maní -->
-        <article class="card">
-          <img src="imagen/mani.jpg" alt="Chocolate Maní">
-          <h4>Maní</h4>
-          <p>Chocolate con leche al 50% cacao con granos de Maní.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
-          </div>
-          <button class="add-btn" data-id="mani">Agregar al carrito</button>
-        </article>
-
-        <!-- Café -->
-        <article class="card">
-          <img src="imagen/cafe.jpg" alt="Chocolate Café">
-          <h4>Café</h4>
-          <p>Chocolate con leche al 50% cacao con el mejor café.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
-          </div>
-          <button class="add-btn" data-id="cafe">Agregar al carrito</button>
-        </article>
-
-        <!-- Almendras y Maní -->
-        <article class="card">
-          <img src="imagen/almendras-mani.jpg" alt="Chocolate Almendras y Maní">
-          <h4>Almendras y Maní</h4>
-          <p>Chocolate con leche al 50% cacao con granos de Almendras y Maní.</p>
-          <div class="presentaciones">
-            <span>S/ 15.00 — 70g</span>
-          </div>
-          <button class="add-btn" data-id="almendras-mani">Agregar al carrito</button>
-        </article>
-
-        <!-- Arándanos 100g -->
-        <article class="card">
-          <img src="imagen/arandanos-100.jpg" alt="Arándanos bañados en chocolate">
-          <h4>Arándanos 100g</h4>
-          <p>Fruta de arándanos deshidratados bañados con chocolate al 70% cacao.</p>
-          <div class="presentaciones">
-            <span>S/ 17.00 — 100g</span>
-          </div>
-          <button class="add-btn" data-id="arandanos100">Agregar al carrito</button>
-        </article>
-
-        <!-- Almendras 100g -->
-        <article class="card">
-          <img src="imagen/almendras-100.jpg" alt="Almendras bañadas en chocolate">
-          <h4>Almendras 100g</h4>
-          <p>Almendras tostadas bañadas con chocolate al 70% cacao.</p>
-          <div class="presentaciones">
-            <span>S/ 17.00 — 100g</span>
-          </div>
-          <button class="add-btn" data-id="almendras100">Agregar al carrito</button>
-        </article>
-
-      </div>
-    </section>
-
-
-    <!-- Historia -->
-    <section id="historia" class="historia">
-      <div class="historia-container">
-        <div class="historia-texto">
-          <h2>🌱 Breve reseña histórica del cacao orgánico</h2>
-          <p>
-            Desde las antiguas civilizaciones precolombinas, el cacao ha sido un símbolo de energía y vitalidad.
-            Hoy, en <strong>MONTCAO</strong> mantenemos viva esa tradición con chocolates elaborados de
-            <em>cacao orgánico seleccionado</em>, cultivado sin químicos y en armonía con la biodiversidad.
-          </p>
-          <p>
-            Nuestras combinaciones con <strong>almendras</strong>, <strong>arándanos</strong>,
-            <strong>aguaymanto</strong>
-            y otros frutos representan la fusión entre lo ancestral y lo contemporáneo: un sabor auténtico, saludable
-            y pensado para disfrutar sin excesos de azúcar.
-          </p>
-          <p>
-            Cada tableta de MONTCAO es un homenaje al cacao y a los productores que hacen posible que este
-            tesoro ancestral llegue a tu mesa.
-          </p>
-        </div>
-        <div class="historia-imagen">
-          <img src="imagen/cacao.jpg" alt="Cacao orgánico">
         </div>
       </div>
     </section>
 
-
-    <!-- Reseñas (con miniaturas y nombres) -->
-    <section id="reseñas" class="resenas">
-      <h3>Reseñas de clientes</h3>
-      <div class="reviews-grid">
-        <!-- 10 reseñas con miniaturas -->
-        <figure class="review">
-          <img class="avatar"
-            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=60" alt="Ana M">
-          <figcaption>
-            <strong>Ana M.</strong>
-            <blockquote>"Increíble sabor y textura. El mejor chocolate que he probado."</blockquote>
-          </figcaption>
-        </figure>
-
-        <figure class="review">
-          <img class="avatar"
-            src="https://images.unsplash.com/photo-1545996124-1e9e0b07f6a3?auto=format&fit=crop&w=80&q=60" alt="Luis R">
-          <figcaption>
-            <strong>Luis R.</strong>
-            <blockquote>"Perfecto para regalar. Mis amigos quedaron encantados."</blockquote>
-          </figcaption>
-        </figure>
-
-        <figure class="review">
-          <img class="avatar"
-            src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=80&q=60"
-            alt="Carla S">
-          <figcaption>
-            <strong>Carla S.</strong>
-            <blockquote>"Sabor profundo y natural. Se nota el cacao orgánico."</blockquote>
-          </figcaption>
-        </figure>
-
-        <figure class="review">
-          <img class="avatar"
-            src="https://images.unsplash.com/photo-1545992336-13c4b65fb41e?auto=format&fit=crop&w=80&q=60"
-            alt="Jorge P">
-          <figcaption>
-            <strong>Jorge P.</strong>
-            <blockquote>"No sube demasiado mi azúcar y puedo disfrutarlo sin culpa."</blockquote>
-          </figcaption>
-        </figure>
-
-        <figure class="review">
-          <img class="avatar"
-            src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?auto=format&fit=crop&w=80&q=60"
-            alt="Elena G">
-          <figcaption>
-            <strong>Elena G.</strong>
-            <blockquote>"La combinación con almendras es insuperable."</blockquote>
-          </figcaption>
-        </figure>
-
-        <figure class="review">
-          <img class="avatar"
-            src="https://images.unsplash.com/photo-1545996123-2f1f53d4c3d3?auto=format&fit=crop&w=80&q=60"
-            alt="Martín Q">
-          <figcaption>
-            <strong>Martín Q.</strong>
-            <blockquote>"Empaque precioso y entrega rápida."</blockquote>
-          </figcaption>
-        </figure>
-
-        <figure class="review">
-          <img class="avatar"
-            src="https://images.unsplash.com/photo-1546443046-ed1ce6ffd1a1?auto=format&fit=crop&w=80&q=60" alt="Rosa T">
-          <figcaption>
-            <strong>Rosa T.</strong>
-            <blockquote>"Textura aterciopelada y aroma increíble."</blockquote>
-          </figcaption>
-        </figure>
-
-        <figure class="review">
-          <img class="avatar"
-            src="https://images.unsplash.com/photo-1545996124-3f6a2bbf7b1b?auto=format&fit=crop&w=80&q=60"
-            alt="Diego L">
-          <figcaption>
-            <strong>Diego L.</strong>
-            <blockquote>"Producto premium, repetiré mi compra."</blockquote>
-          </figcaption>
-        </figure>
-
+    <section id="productos" class="section-padding section-bg">
+      <div class="container">
+        <h2 class="section-title text-center">Nuestra Colección</h2>
+        <p class="section-subtitle text-center">Elige tu favorito o atrévete a probar algo nuevo.</p>
+        <div id="catalog-grid" class="catalog-grid">
+          </div>
       </div>
     </section>
 
-    <!-- Contacto / pie -->
-    <section id="contacto" class="contacto">
-      <div class="contact-container">
-        <h2 class="contact-title">📞 Contáctanos</h2>
-        <p class="contact-text">
-          ¿Tienes dudas o quieres hacer un pedido rápido?<br>
-          Escríbenos por <strong>Instagram</strong>, <strong>TikTok</strong> o directamente por
-          <strong>WhatsApp</strong>.
-        </p>
-
-        <a href="https://wa.me/51967122591" target="_blank" class="btn-whatsapp">
-          💬 Contactar por WhatsApp
-        </a>
-
-        <p class="footer-copy">
-          © <span id="year"></span> <strong>MONTCAO</strong> — Todos los derechos reservados
-        </p>
+    <section id="story" class="section-padding">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1574068468668-a05a11f871da?q=80&w=1887&auto=format&fit=crop" alt="Fundadores de MONTCAO en un campo de cacao">
+          </div>
+          <div class="story-content">
+            <h2 class="section-title">Pasión por lo Auténtico</h2>
+            <p>MONTCAO nació de un sueño: crear un chocolate que fuera a la vez delicioso y honesto. Un chocolate que respeta la tierra, a los agricultores y a tu bienestar. Cada tableta es una promesa de pureza y sabor, hecha con amor desde Tarapoto para el Perú.</p>
+            <a href="#" class="btn btn-primary">Conoce más</a>
+          </div>
+        </div>
       </div>
+    </section>
+    
+    <section id="reviews" class="section-padding section-bg">
+        <div class="container">
+            <h2 class="section-title text-center">Lo que Dicen Nuestros Clientes</h2>
+            <div class="swiper review-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=1886&auto=format&fit=crop" alt="Cliente Ana" class="review-avatar">
+                            <p class="review-text">"Nunca había probado un chocolate tan intenso y a la vez tan suave. El de arándanos es mi favorito. ¡100% recomendado!"</p>
+                            <h4 class="review-author">- Ana Lucía M.</h4>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" alt="Cliente Carlos" class="review-avatar">
+                            <p class="review-text">"El regalo perfecto. La presentación es impecable y el sabor es de otro nivel. Se nota la calidad del cacao orgánico."</p>
+                            <h4 class="review-author">- Carlos R.</h4>
+                        </div>
+                    </div>
+                     <div class="swiper-slide">
+                        <div class="review-card">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop" alt="Cliente Sofia" class="review-avatar">
+                            <p class="review-text">"Me encanta que sea un producto peruano, sostenible y delicioso. El de café me da la energía que necesito por las mañanas."</p>
+                            <h4 class="review-author">- Sofía V.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <small>Diseño de página de ventas para MONTCAO — personaliza cuentas y número de WhatsApp en el JS.</small>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>MONTCAO</h3>
+          <p>Chocolate orgánico artesanal.<br>Sabor que conecta con el origen.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#process">Proceso</a></li>
+            <li><a href="#productos">Tienda</a></li>
+            <li><a href="#story">Historia</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Síguenos</h4>
+          <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">Facebook</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> MONTCAO. Todos los derechos reservados.</p>
+      </div>
     </div>
   </footer>
 
-  <script src="app.js"></script>
-</body>
+  <div id="product-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn">&times;</button>
+      <div class="modal-grid">
+        <div class="modal-image-gallery">
+          <img id="modal-img" src="" alt="Imagen del producto">
+        </div>
+        <div class="modal-product-details">
+          <h2 id="modal-name"></h2>
+          <p class="modal-price"><span id="modal-price"></span></p>
+          <p id="modal-desc"></p>
+          <div class="modal-actions">
+            <div class="quantity-selector">
+              <button class="quantity-btn" data-action="decrease">-</button>
+              <input type="number" class="quantity-input" value="1" min="1">
+              <button class="quantity-btn" data-action="increase">+</button>
+            </div>
+            <button id="modal-add-to-cart-btn" class="btn btn-primary">Agregar al Carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div id="toast-notification" class="toast">
+    <p id="toast-message"></p>
+  </div>
+  
+  <div id="side-cart" class="side-cart">
+      <div class="side-cart-header">
+          <h3>Tu Carrito</h3>
+          <button id="close-cart-btn">&times;</button>
+      </div>
+      <div id="side-cart-items" class="side-cart-items">
+          <p class="empty-cart-message">Tu carrito está vacío.</p>
+      </div>
+      <div class="side-cart-footer">
+          <div class="subtotal-row">
+              <strong>Subtotal:</strong>
+              <strong id="cart-subtotal">S/ 0.00</strong>
+          </div>
+          <a href="cart.html" class="btn btn-primary btn-block">Finalizar Compra</a>
+      </div>
+  </div>
+  <div id="cart-overlay" class="cart-overlay"></div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="app.js" defer></script>
+
+</body>
 </html>

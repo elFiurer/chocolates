@@ -1,85 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Carrito — MONTCAO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Compra - MONTCAO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body id="cart-page">
+
+<body id="checkout-page">
+
   <header class="site-header">
-    <div class="container header-grid">
-      <div class="brand">
-        <a class="logo-link" href="index.html">
-          <h1 class="logo">MONTCAO</h1>
-        </a>
-      </div>
-
-      <nav class="top-nav">
-        <ul>
-          <li><a href="index.html#productos" class="nav-link">Productos</a></li>
-          <li><a href="index.html#historia" class="nav-link">Historia</a></li>
-          <li><a href="index.html#reseñas" class="nav-link">Reseñas</a></li>
-        </ul>
-      </nav>
-
-      <div class="social-cards">
-        <a class="social-card tiktok" href="https://www.tiktok.com" target="_blank" rel="noopener">
-          <div class="icon">TikTok</div>
-          <div class="label">Síguenos</div>
-        </a>
-
-        <a class="social-card instagram" href="https://www.instagram.com" target="_blank" rel="noopener">
-          <div class="icon">Instagram</div>
-          <div class="label">Síguenos</div>
-        </a>
-
-        <a class="social-card cart-link" href="cart.html">
-          <div class="icon">🛒</div>
-          <div class="label">Carrito</div>
-        </a>
-      </div>
+    <div class="container header-container">
+      <a href="index.html" class="logo">MONTCAO</a>
+      <a href="index.html#productos" class="btn btn-primary">‹ Volver a la tienda</a>
     </div>
   </header>
 
-  <main class="container">
-    <section class="cart-page">
-      <h2>Tu carrito</h2>
-      <div id="cart-page-items" class="cart-page-items">
-        <p class="empty">El carrito está vacío. Ve a la <a href="index.html#productos">tienda</a> y agrega productos.</p>
-      </div>
+  <main class="section-padding">
+    <div class="container">
+      <h1 class="section-title text-center">Finaliza tu Compra</h1>
+      <p class="section-subtitle text-center">Sigue estos 3 pasos para completar tu pedido.</p>
 
-      <div class="cart-summary-page" id="cart-summary-page" style="display:none;">
-        <div class="summary-box">
-          <div class="row"><span>Subtotal</span><span id="page-subtotal">S/ 0.00</span></div>
-          <div class="row"><span>Envío</span><span id="page-shipping">S/ 0.00</span></div>
-          <div class="row total"><strong>Total</strong><strong id="page-total">S/ 0.00</strong></div>
-          <div style="margin-top:12px;">
-            <p><strong>Métodos de pago</strong></p>
-            <ul>
-              <li>Yape: +51 9XXXXXXXX (reemplaza por tu número real)</li>
-              <li>BCP: 001-12345678-0 — MONTCAO SAC</li>
-              <li>Interbank: 123-4567890 — MONTCAO SAC</li>
-              <li>BBVA: 987-654321 — MONTCAO SAC</li>
-            </ul>
+      <div class="checkout-flow">
+        <div class="order-summary">
+          <h3>1. Resumen de tu Pedido</h3>
+          <div id="summary-items-container" class="summary-items">
+            <p>Cargando tu pedido...</p>
           </div>
-
-          <div style="display:flex;gap:8px;margin-top:12px;">
-            <button id="page-whatsapp" class="btn whatsapp">Enviar pedido por WhatsApp</button>
-            <button id="clear-cart" class="btn outline">Vaciar carrito</button>
+          <div class="summary-total">
+            <div class="total-row">
+              <span>Subtotal</span>
+              <span id="summary-subtotal">S/ 0.00</span>
+            </div>
+            <div class="total-row">
+              <span>Envío</span>
+              <span id="summary-shipping">S/ 8.00</span>
+            </div>
+            <div class="total-row grand-total">
+              <span>Total a Pagar</span>
+              <span id="summary-grand-total">S/ 0.00</span>
+            </div>
           </div>
         </div>
+
+        <div class="payment-section">
+          <h3>2. Elige tu Método de Pago</h3>
+          <div class="payment-methods">
+            <div class="payment-card yape">
+              <div class="payment-card-header">
+                <img src="https://www.logo.wine/a/logo/Yape/Yape-Logo.wine.svg" alt="Logo Yape" class="payment-logo">
+                <h4>Yape</h4>
+              </div>
+              <div class="payment-card-body">
+                <p>Escanea el código QR o paga al número:</p>
+                <img src="https://i.ibb.co/L6MP1gD/qr-yape-placeholder.png" alt="Código QR de Yape" class="payment-qr">
+                <strong>Número: 967 122 591</strong>
+                <span>Titular: Montcao S.A.C.</span>
+              </div>
+            </div>
+            <div class="payment-card bcp">
+              <div class="payment-card-header">
+                <img src="https://www.logo.wine/a/logo/Banco_de_Cr%C3%A9dito_del_Per%C3%BA/Banco_de_Cr%C3%A9dito_del_Per%C3%BA-Logo.wine.svg" alt="Logo BCP" class="payment-logo">
+                <h4>BCP</h4>
+              </div>
+              <div class="payment-card-body">
+                <p>Transferencia o depósito a la cuenta:</p>
+                <strong>Cta. Ahorros Soles:</strong>
+                <span>191-XXXXXXXX-X-XX</span>
+                <strong>CCI:</strong>
+                <span>002191XXXXXXXXXXXXXX</span>
+                <span>Titular: Montcao S.A.C.</span>
+              </div>
+            </div>
+            <div class="payment-card bbva">
+              <div class="payment-card-header">
+                <img src="https://www.logo.wine/a/logo/BBVA/BBVA-Logo.wine.svg" alt="Logo BBVA" class="payment-logo">
+                <h4>BBVA</h4>
+              </div>
+              <div class="payment-card-body">
+                <p>Transferencia o depósito a la cuenta:</p>
+                <strong>Cta. Ahorros Soles:</strong>
+                <span>0011-XXXX-XXXXXXXXXX</span>
+                <strong>CCI:</strong>
+                <span>011117XXXXXXXXXXXXXX</span>
+                <span>Titular: Montcao S.A.C.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="whatsapp-action">
+          <h3>3. ¡Listo para ordenar!</h3>
+          <p>Una vez realizado el pago, haz clic aquí para enviarnos tu pedido y el comprobante por WhatsApp.</p>
+          <button id="send-whatsapp-btn" class="btn-whatsapp">
+            <img src="https://static.whatsapp.net/rsrc.php/v3/y7/r/DSxOAUB0raA.png" alt="WhatsApp Icon" class="whatsapp-icon">
+            Completar Pedido por WhatsApp
+          </button>
+        </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <small>Personaliza cuentas y número de WhatsApp en el JS.</small>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> MONTCAO. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

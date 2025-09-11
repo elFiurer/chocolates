@@ -1,355 +1,237 @@
-/* app.js
- - Maneja catálogo, carrito (persistente en localStorage), dropdown del carrito y la página cart.html
- - Reemplaza YOUR_WHATSAPP_NUMBER por el número destino real (ej: 51912345678)
-*/
+// CÓDIGO COMPLETO Y FINAL PARA APP.JS
 
-const STORAGE_KEY = 'montcao_cart_v1';
-
-/* ---------------------------
-   Catálogo real de MONTCAO
-   --------------------------- */
-const PRODUCTS = [
-  { id: 'quinua-kiwicha', name: 'Quinua y Kiwicha', desc: 'Chocolate al 70% cacao con cereales andinos (Quinua y Kiwicha).', price: 15.00, sizeLabel: '70g', img: 'imagen/quinua-kiwicha.jpg' },
-  { id: 'aguaymanto', name: 'Aguaymanto', desc: 'Chocolate al 70% cacao con Aguaymanto.', price: 15.00, sizeLabel: '70g', img: 'imagen/aguaymanto.jpg' },
-  { id: 'mix-frutas', name: 'Mix de Frutas', desc: 'Chocolate al 70% cacao con mix de frutas.', price: 15.00, sizeLabel: '70g', img: 'imagen/mix-frutas.jpg' },
-  { id: 'pina', name: 'Piña', desc: 'Chocolate al 70% cacao con Piña.', price: 15.00, sizeLabel: '70g', img: 'imagen/pina.jpg' },
-  { id: 'cerezas', name: 'Cerezas', desc: 'Chocolate al 70% cacao con Cerezas.', price: 15.00, sizeLabel: '70g', img: 'imagen/cerezas.jpg' },
-  { id: 'lucuma', name: 'Lúcuma', desc: 'Chocolate al 70% cacao con Lúcuma.', price: 15.00, sizeLabel: '70g', img: 'imagen/lucuma.jpg' },
-  { id: 'dark', name: 'Chocolate Dark', desc: 'Chocolate Dark al 70% cacao.', price: 15.00, sizeLabel: '70g', img: 'imagen/dark.jpg' },
-  { id: 'arandanos', name: 'Arándanos', desc: 'Chocolate al 70% cacao con incrustaciones de Arándanos.', price: 15.00, sizeLabel: '70g', img: 'imagen/arandanos.jpg' },
-  { id: 'almendras', name: 'Almendras', desc: 'Chocolate con leche al 50% cacao con granos de Almendra.', price: 15.00, sizeLabel: '70g', img: 'imagen/almendras.jpg' },
-  { id: 'mani', name: 'Maní', desc: 'Chocolate con leche al 50% cacao con granos de Maní.', price: 15.00, sizeLabel: '70g', img: 'imagen/mani.jpg' },
-  { id: 'cafe', name: 'Café', desc: 'Chocolate con leche al 50% cacao con el mejor café.', price: 15.00, sizeLabel: '70g', img: 'imagen/cafe.jpg' },
-  { id: 'almendras-mani', name: 'Almendras y Maní', desc: 'Chocolate con leche al 50% cacao con granos de Almendras y Maní.', price: 15.00, sizeLabel: '70g', img: 'imagen/almendras-mani.jpg' },
-  { id: 'arandanos100', name: 'Arándanos 100g', desc: 'Arándanos deshidratados bañados en chocolate al 70% cacao.', price: 17.00, sizeLabel: '100g', img: 'imagen/arandanos-100.jpg' },
-  { id: 'almendras100', name: 'Almendras 100g', desc: 'Almendras tostadas bañadas en chocolate al 70% cacao.', price: 17.00, sizeLabel: '100g', img: 'imagen/almendras-100.jpg' },
-];
-
-
-/* ---------------------------
-   Carrito: persistencia y utilitarios
-   --------------------------- */
-let cart = loadCart();
-
-function saveCart() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-  renderCartDropdown();
-}
-
-function loadCart() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    return JSON.parse(raw);
-  } catch (e) {
-    console.error('Error cargando carrito', e);
-    return [];
-  }
-}
-
-const formatMoney = v => `S/ ${(v).toFixed(2)}`;
-
-/* ---------------------------
-   Funciones: catálogo (index)
-   --------------------------- */
-
-
-function addToCart(productId, qty = 1) {
-  const product = PRODUCTS.find(p => p.id === productId);
-  if (!product) return;
-
-  const existing = cart.find(i => i.id === productId);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cart.push({
-      id: product.id,
-      name: product.name,
-      sizeLabel: product.sizeLabel,
-      unitPrice: product.price,
-      qty,
-      img: product.img
-    });
-  }
-  saveCart();
-  flashAdded();
-}
-
-
-
-function removeFromCart(index) {
-  if (index < 0 || index >= cart.length) return;
-  cart.splice(index, 1);
-  saveCart();
-}
-
-function clearCart() {
-  cart = [];
-  saveCart();
-}
-
-/* Totales */
-function calcTotals() {
-  const subtotal = cart.reduce((s, it) => s + it.unitPrice * it.qty, 0);
-  const shipping = subtotal >= 80 && subtotal > 0 ? 0 : (subtotal > 0 ? 8.00 : 0.00);
-  const total = subtotal + shipping;
-  return { subtotal, shipping, total };
-}
-
-/* ---------------------------
-   Dropdown del header
-   --------------------------- */
-function renderCartDropdown() {
-  const countEl = document.getElementById('cart-count');
-  const dd = document.getElementById('dropdown-items');
-  const subtotalEl = document.getElementById('dd-subtotal');
-  if (countEl) countEl.textContent = cart.reduce((s, it) => s + it.qty, 0);
-  if (!dd) return;
-  dd.innerHTML = '';
-  if (cart.length === 0) {
-    dd.innerHTML = '<p class="empty">No hay productos aún.</p>';
-  } else {
-    cart.forEach((item, idx) => {
-      const div = document.createElement('div');
-      div.className = 'dd-item';
-      div.innerHTML = `
-        <img src="${item.img}" alt="${escapeHtml(item.name)}">
-        <div class="meta">
-          <strong class="cart-item-name">${escapeHtml(item.name)}</strong>
-          <div class="cart-item-details">${escapeHtml(item.sizeLabel)} • x${item.qty}</div>
-          <div class="cart-item-price">${formatMoney(item.unitPrice * item.qty)}</div>
-        </div>
-        <div><button class="remove" data-idx="${idx}" aria-label="Eliminar">✕</button></div>
-      `;
-      dd.appendChild(div);
-    });
-
-    // attach remove listeners
-    dd.querySelectorAll('.remove').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation(); // evita que se cierre el dropdown
-        const idx = Number(btn.dataset.idx);
-        removeFromCart(idx);
-        renderCartDropdown();
-        renderCartPage();
-
-        // mantener abierto si ya lo estaba
-        const dropdown = document.getElementById('cart-dropdown');
-        if (dropdown) {
-          dropdown.classList.add('open');
-          dropdown.setAttribute('aria-hidden', 'false');
-        }
-      });
-    });
-  }
-
-  // update subtotal
-  const totals = calcTotals();
-  if (subtotalEl) subtotalEl.textContent = formatMoney(totals.subtotal);
-}
-
-
-/* ---------------------------
-   Página carrito (cart.html)
-   --------------------------- */
-function renderCartPage() {
-  const container = document.getElementById('cart-page-items');
-  if (!container) return;
-  container.innerHTML = '';
-  if (cart.length === 0) {
-    container.innerHTML = '<p class="empty">El carrito está vacío. Ve a la <a href="index.html#productos">tienda</a> y agrega productos.</p>';
-    document.getElementById('cart-summary-page').style.display = 'none';
-    return;
-  }
-
-  cart.forEach((item, idx) => {
-    const row = document.createElement('div');
-    row.className = 'cart-row';
-    row.innerHTML = `
-      <img src="${item.img}" alt="${escapeHtml(item.name)}">
-      <div class="meta">
-        <strong>${escapeHtml(item.name)}</strong>
-        <div style="color:var(--muted)">${escapeHtml(item.sizeLabel)}</div>
-        <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
-          <div class="qty">Cant: <strong>${item.qty}</strong></div>
-          <div style="margin-left:auto;font-weight:700">${formatMoney(item.unitPrice * item.qty)}</div>
-          <button class="remove" data-idx="${idx}" aria-label="Eliminar">✕</button>
-        </div>
-      </div>
-    `;
-    container.appendChild(row);
-  });
-
-  // attach remove listeners
-  container.querySelectorAll('.remove').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = Number(btn.dataset.idx);
-      removeFromCart(idx);
-      renderCartPage();
-      renderCartDropdown();
-    });
-  });
-
-  // mostrar resumen
-  const totals = calcTotals();
-  document.getElementById('page-subtotal').textContent = formatMoney(totals.subtotal);
-  document.getElementById('page-shipping').textContent = formatMoney(totals.shipping);
-  document.getElementById('page-total').textContent = formatMoney(totals.total);
-  document.getElementById('cart-summary-page').style.display = 'block';
-}
-
-/* ---------------------------
-   WhatsApp: arma mensaje y abre wa.me
-   --------------------------- */
-function sendWhatsAppFromCart() {
-  if (cart.length === 0) {
-    alert('El carrito está vacío. Agrega al menos un producto antes de enviar el pedido.');
-    return;
-  }
-
-  const phone = '51967122591'; // <-- REEMPLAZA por tu número (ej: 51912345678)
-
-  const lines = [];
-  lines.push('Pedido desde *MONTCAO*');
-  lines.push('');
-  cart.forEach((it, i) => {
-    lines.push(`${i + 1}. ${it.name} - ${it.sizeLabel} x ${it.qty} — ${formatMoney(it.unitPrice * it.qty)}`);
-  });
-  const totals = calcTotals();
-  lines.push('');
-  lines.push(`Subtotal: ${formatMoney(totals.subtotal)}`);
-  lines.push(`Envío: ${formatMoney(totals.shipping)}`);
-  lines.push(`Total: ${formatMoney(totals.total)}`);
-  lines.push('');
-  lines.push('Datos de cliente:');
-  lines.push('Nombre:');
-  lines.push('Dirección:');
-  lines.push('Teléfono:');
-  lines.push('');
-  lines.push('Método de pago: (Yape / BCP / Interbank / BBVA)');
-
-  const text = encodeURIComponent(lines.join('\n'));
-  const url = `https://wa.me/${phone}?text=${text}`;
-  window.open(url, '_blank');
-}
-
-/* ---------------------------
-   Interactividad del dropdown (abrir/cerrar)
-   --------------------------- */
-function setupDropdown() {
-  const toggle = document.getElementById('cart-toggle');
-  const dropdown = document.getElementById('cart-dropdown');
-  const ddWhatsapp = document.getElementById('dd-whatsapp');
-
-  if (toggle && dropdown) {
-    toggle.addEventListener('click', (e) => {
-      const open = dropdown.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      dropdown.setAttribute('aria-hidden', open ? 'false' : 'true');
-    });
-
-    // cerrar si se hace click fuera
-    document.addEventListener('click', (e) => {
-      if (!dropdown.classList.contains('open')) return;
-      const wrapper = dropdown.closest('.cart-dropdown-wrapper');
-      if (!wrapper.contains(e.target)) {
-        dropdown.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        dropdown.setAttribute('aria-hidden', 'true');
-      }
-    });
-  }
-
-  if (ddWhatsapp) {
-    ddWhatsapp.addEventListener('click', sendWhatsAppFromCart);
-  }
-}
-
-/* ---------------------------
-   Util: escape html
-   --------------------------- */
-function escapeHtml(str) {
-  if (!str) return '';
-  return String(str).replace(/[&<>"']/g, function (m) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
-  });
-}
-
-/* ---------------------------
-   Pequeña animación al agregar
-   --------------------------- */
-function flashAdded() {
-  const toggle = document.getElementById('cart-toggle');
-  if (!toggle) return;
-  toggle.animate([
-    { transform: 'translateY(0) scale(1)' },
-    { transform: 'translateY(-6px) scale(1.06)' },
-    { transform: 'translateY(0) scale(1)' }
-  ], { duration: 350, easing: 'ease-out' });
-}
-
-/* ---------------------------
-   Inicialización según página
-   --------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
-  // update year in any page
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  renderCartDropdown();
-  setupDropdown();
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      if (target) {
-        e.preventDefault();
-        const header = document.querySelector('header'); // ajusta si tu header tiene otro selector
-        const headerHeight = header ? header.offsetHeight : 0;
-        const y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+  // --- 1. ESTADO Y DATOS ---
+  const PRODUCTS = [
+    { id: 'quinua-kiwicha', name: 'Quinua y Kiwicha', desc: 'Chocolate al 70% cacao con un crujiente mix de superalimentos andinos: Quinua y Kiwicha. Una tableta llena de textura y sabor.', price: 15.00, img: 'imagen/quinua-kiwicha.jpg' },
+    { id: 'aguaymanto', name: 'Aguaymanto', desc: 'El balance perfecto entre el dulzor y la acidez del aguaymanto deshidratado, cubierto por nuestro intenso chocolate al 70% cacao.', price: 15.00, img: 'imagen/aguaymanto.jpg' },
+    { id: 'mix-frutas', name: 'Mix de Frutas', desc: 'Una explosión de sabores tropicales. Chocolate al 70% cacao con un mix de nuestras mejores frutas deshidratadas.', price: 15.00, img: 'imagen/mix-frutas.jpg' },
+    { id: 'pina', name: 'Piña Tropical', desc: 'Trozos de piña deshidratada que aportan un toque dulce y exótico a nuestro clásico chocolate al 70% cacao.', price: 15.00, img: 'imagen/pina.jpg' },
+    { id: 'arandanos-70', name: 'Arándanos', desc: 'Chocolate al 70% cacao con incrustaciones de arándanos, conocidos por sus propiedades antioxidantes y su delicioso sabor.', price: 15.00, img: 'imagen/arandanos.jpg' },
+    { id: 'almendras', name: 'Almendras Clásicas', desc: 'Chocolate con leche al 50% cacao con trozos generosos de almendras tostadas. Un clásico irresistible.', price: 15.00, img: 'imagen/almendras.jpg' },
+    { id: 'cafe', name: 'Café de Altura', desc: 'Para los amantes del café, nuestro chocolate con leche al 50% se fusiona con granos de café de origen único, molidos finamente.', price: 15.00, img: 'imagen/cafe.jpg' },
+    { id: 'arandanos-100g', name: 'Arándanos Bañados', desc: 'Arándanos deshidratados, jugosos y suaves, sumergidos uno a uno en nuestro más puro chocolate al 70% cacao. Presentación de 100g.', price: 17.00, img: 'imagen/arandanos-100.jpg' },
+    { id: 'almendras-100g', name: 'Almendras Bañadas', desc: 'Almendras enteras y tostadas, cubiertas por una capa gruesa de chocolate al 70% cacao. Un snack perfecto en presentación de 100g.', price: 17.00, img: 'imagen/almendras-100.jpg' },
+  ];
+  let cart = [];
+
+  // --- 2. FUNCIONES DE UTILIDAD ---
+  const formatMoney = value => `S/ ${value.toFixed(2)}`;
+  const calculateTotals = () => {
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shipping = subtotal > 0 && subtotal < 80 ? 8.00 : 0;
+    const grandTotal = subtotal + shipping;
+    return { subtotal, shipping, grandTotal };
+  };
+
+  // --- 3. PERSISTENCIA DEL CARRITO ---
+  const saveCart = () => localStorage.setItem('montcao_cart_v2', JSON.stringify(cart));
+  const loadCart = () => { cart = JSON.parse(localStorage.getItem('montcao_cart_v2')) || []; };
+
+  // --- 4. LÓGICA PÁGINA PRINCIPAL (INDEX) ---
+  function initIndexPage() {
+    const catalogGrid = document.getElementById('catalog-grid');
+    const cartCountEl = document.getElementById('cart-count');
+    const cartButton = document.getElementById('cart-button');
+    const modal = document.getElementById('product-modal');
+    const sideCart = document.getElementById('side-cart');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const toast = document.getElementById('toast-notification');
+    const hamburgerBtn = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+
+    const updateCartCount = () => {
+      cartCountEl.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    };
+    
+    const renderSideCart = () => {
+        const container = document.getElementById('side-cart-items');
+        const subtotalEl = document.getElementById('cart-subtotal');
+        if (cart.length === 0) {
+            container.innerHTML = `<p class="empty-cart-message">Tu carrito está vacío.</p>`;
+        } else {
+            container.innerHTML = cart.map(item => `
+            <div class="cart-item" data-id="${item.id}">
+                <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                <div class="cart-item-details">
+                <p><strong>${item.name}</strong></p> <p>${formatMoney(item.price)}</p>
+                <div class="cart-item-actions">
+                    <div class="quantity-selector">
+                    <button class="quantity-btn" data-action="decrease">-</button>
+                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" readonly>
+                    <button class="quantity-btn" data-action="increase">+</button>
+                    </div>
+                    <button class="remove-item-btn" data-id="${item.id}">Quitar</button>
+                </div></div></div>`).join('');
+        }
+        subtotalEl.textContent = formatMoney(calculateTotals().subtotal);
+    };
+
+    const updateUI = () => { updateCartCount(); renderSideCart(); saveCart(); };
+    
+    const addToCart = (id, qty) => {
+        const product = PRODUCTS.find(p => p.id === id);
+        if (!product) return;
+        const item = cart.find(i => i.id === id);
+        if (item) { item.quantity += qty; }
+        else { cart.push({ ...product, quantity: qty }); }
+        showToast(`"${product.name}" fue agregado.`);
+        updateUI();
+    };
+
+    const updateCartItemQuantity = (id, newQty) => {
+        const item = cart.find(i => i.id === id);
+        if (!item) return;
+        if (newQty <= 0) { cart = cart.filter(i => i.id !== id); }
+        else { item.quantity = newQty; }
+        updateUI();
+    };
+
+    const renderProducts = () => {
+        catalogGrid.innerHTML = PRODUCTS.map(p => `
+        <div class="product-card" data-id="${p.id}"><div class="product-image-container">
+            <img src="${p.img}" alt="${p.name}" class="product-image">
+            <button class="quick-view-btn" data-id="${p.id}">Vista Rápida</button>
+        </div><div class="product-info">
+            <h3 class="product-name">${p.name}</h3><p class="product-price">${formatMoney(p.price)}</p>
+            <div class="product-actions"><div class="quantity-selector">
+            <button class="quantity-btn" data-action="decrease">-</button>
+            <input type="number" class="quantity-input" value="1" min="1" readonly>
+            <button class="quantity-btn" data-action="increase">+</button>
+            </div><button class="add-to-cart-btn" data-id="${p.id}">Añadir</button>
+            </div></div></div>`).join('');
+    };
+    const showToast = (msg) => {
+        const toastMsg = document.getElementById('toast-message');
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    };
+
+    // Lógica de componentes (modal, cart, etc.)
+    const openModal = (id) => {
+        const p = PRODUCTS.find(p => p.id === id);
+        if (!p) return;
+        modal.querySelector('#modal-img').src = p.img;
+        modal.querySelector('#modal-name').textContent = p.name;
+        modal.querySelector('#modal-price').textContent = formatMoney(p.price);
+        modal.querySelector('#modal-desc').textContent = p.desc;
+        modal.querySelector('#modal-add-to-cart-btn').dataset.id = id;
+        modal.querySelector('.quantity-input').value = 1;
+        modal.classList.add('active');
+    };
+    const closeModal = () => modal.classList.remove('active');
+    const openCart = () => { sideCart.classList.add('active'); cartOverlay.classList.add('active'); };
+    const closeCart = () => { sideCart.classList.remove('active'); cartOverlay.classList.remove('active'); };
+
+    // --- Eventos Página Principal ---
+    renderProducts();
+    updateUI();
+    new Swiper('.review-slider', { loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true }, grabCursor: true });
+    
+    catalogGrid.addEventListener('click', e => {
+      const card = e.target.closest('.product-card');
+      if (!card) return;
+      const id = card.dataset.id;
+      const qtyInput = card.querySelector('.quantity-input');
+      if (e.target.matches('.quick-view-btn')) openModal(id);
+      if (e.target.matches('.add-to-cart-btn')) { addToCart(id, parseInt(qtyInput.value)); qtyInput.value = 1; }
+      if (e.target.matches('.quantity-btn')) {
+        let qty = parseInt(qtyInput.value);
+        if (e.target.dataset.action === 'increase') qty++;
+        else if (qty > 1) qty--;
+        qtyInput.value = qty;
       }
     });
-  });
 
-
-  document.querySelectorAll('.add-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      addToCart(btn.dataset.id);
-      renderCartDropdown();
+    modal.addEventListener('click', e => {
+      if (e.target.matches('.modal-overlay, .modal-close-btn')) closeModal();
+      if (e.target.matches('#modal-add-to-cart-btn')) {
+        const id = e.target.dataset.id;
+        const qty = parseInt(modal.querySelector('.quantity-input').value);
+        addToCart(id, qty);
+        closeModal();
+      }
     });
-  });
 
-  // index page
-  if (document.getElementById('index-page')) {
-
-    // attach dd-whatsapp already in setupDropdown
-  }
-
-  // cart page
-  if (document.getElementById('cart-page')) {
-    renderCartPage();
-    // botones en la página
-    const pageWhats = document.getElementById('page-whatsapp');
-    const clearBtn = document.getElementById('clear-cart');
-    if (pageWhats) pageWhats.addEventListener('click', sendWhatsAppFromCart);
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        if (confirm('¿Vaciar todo el carrito?')) {
-          clearCart();
-          renderCartPage();
-          renderCartDropdown();
+    cartButton.addEventListener('click', openCart);
+    closeCartBtn.addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+    
+    sideCart.addEventListener('click', e => {
+        const item = e.target.closest('.cart-item');
+        if(!item) return;
+        const id = item.dataset.id;
+        if(e.target.matches('.remove-item-btn')) updateCartItemQuantity(id, 0);
+        if(e.target.matches('.quantity-btn')) {
+            let qty = parseInt(item.querySelector('.quantity-input').value);
+            if (e.target.dataset.action === 'increase') qty++; else qty--;
+            updateCartItemQuantity(id, qty);
         }
-      });
-    }
-  }
-});
-// Toggle menú hamburguesa
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger");
-  const navLinks = document.querySelector(".nav-links");
+    });
 
-  hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
+    hamburgerBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+    navLinks.addEventListener('click', e => { if (e.target.matches('a')) navLinks.classList.remove('active'); });
+  }
+
+  // --- 5. LÓGICA PÁGINA CHECKOUT (CART) ---
+  function initCheckoutPage() {
+    const summaryContainer = document.getElementById('summary-items-container');
+    const subtotalEl = document.getElementById('summary-subtotal');
+    const shippingEl = document.getElementById('summary-shipping');
+    const grandTotalEl = document.getElementById('summary-grand-total');
+    const sendWhatsAppBtn = document.getElementById('send-whatsapp-btn');
+    
+    const renderCheckoutSummary = () => {
+      if (cart.length === 0) {
+        summaryContainer.innerHTML = `<p>Tu carrito está vacío. <a href="index.html">Vuelve a la tienda</a> para agregar productos.</p>`;
+        sendWhatsAppBtn.disabled = true;
+        sendWhatsAppBtn.style.cssText = 'opacity: 0.6; cursor: not-allowed;';
+      } else {
+        summaryContainer.innerHTML = cart.map(item => `
+          <div class="summary-item"><img src="${item.img}" alt="${item.name}" class="summary-item-img">
+            <div class="summary-item-details"><p><strong>${item.name}</strong></p><p>Cantidad: ${item.quantity}</p></div>
+            <span class="summary-item-price">${formatMoney(item.price * item.quantity)}</span>
+          </div>`).join('');
+      }
+      const { subtotal, shipping, grandTotal } = calculateTotals();
+      subtotalEl.textContent = formatMoney(subtotal);
+      shippingEl.textContent = formatMoney(shipping);
+      grandTotalEl.textContent = formatMoney(grandTotal);
+    };
+
+    const sendWhatsAppMessage = () => {
+      if (cart.length === 0) { alert("Tu carrito está vacío."); return; }
+      
+      const WHATSAPP_NUMBER = '51967122591'; // ¡IMPORTANTE! Reemplaza este número
+      
+      const { subtotal, shipping, grandTotal } = calculateTotals();
+      let message = `*¡Hola MONTCAO!* 🍫\n\nQuisiera hacer el siguiente pedido:\n\n`;
+      cart.forEach(item => {
+        message += `• ${item.name} (x${item.quantity}) - ${formatMoney(item.price * item.quantity)}\n`;
+      });
+      message += `\n-------------------------\n*Subtotal:* ${formatMoney(subtotal)}\n*Envío:* ${formatMoney(shipping)}\n*TOTAL A PAGAR:* *${formatMoney(grandTotal)}*\n\nQuedo a la espera de la confirmación para coordinar la entrega. ¡Gracias!`;
+      
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+    };
+
+    renderCheckoutSummary();
+    sendWhatsAppBtn.addEventListener('click', sendWhatsAppMessage);
+  }
+
+  // --- 6. INICIALIZADOR GENERAL ---
+  function init() {
+    loadCart();
+    if (document.getElementById('catalog-grid')) {
+      initIndexPage();
+    } else if (document.getElementById('checkout-page')) {
+      initCheckoutPage();
+    }
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  }
+
+  init();
 });
