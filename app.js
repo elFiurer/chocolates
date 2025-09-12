@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'chocolate dark', name: 'Chocolate Dark', desc: 'Deliciosa barra de chocolate al 70% cacao.', price: 15.00, img: 'imagen/chocolatedark.jpg' },
     { id: 'maní', name: 'Maní', desc: 'Deliciosa barra de chocolate con leche al 50% cacao, con granos de Maní.', price: 15.00, img: 'imagen/mani.jpg' },
     { id: 'almendras y maní', name: 'Almendras y Maní', desc: 'Deliciosa barra de chocolate con leche al 50% cacao, con granos de Almendras y Maní.', price: 15.00, img: 'imagen/almendrasymani.jpg' },
+    { id: 'Bombones de Frambuesa', name: 'Bombones Frambuesa', desc: 'Bombones de frambuesa liofilizados , doble chocolate 70% cacao', price: 15.00, img: 'imagen/frambuesa.jpg' },
     { id: 'arandanos-100g', name: 'Arándanos Bañados', desc: 'Arándanos jugosos sumergidos en nuestro más puro chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/arandanos-100.jpg' },
     { id: 'almendras-100g', name: 'Almendras Bañadas', desc: 'Almendras enteras tostadas, cubiertas por chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/almendras-100.jpg' },
   ];
