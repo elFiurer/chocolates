@@ -340,16 +340,14 @@ button {
   /* espacio a la izquierda */
 }
 
-.hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%; /* Asegura que cubra el ancho mínimo */
-    min-height: 100%; /* Asegura que cubra el alto mínimo */
-    width: auto;
-    height: auto;
-    object-fit: cover; /* Recorta el video para llenar el espacio, eliminando barras negras */
-    z-index: -1;
+.hero-video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -2;
 }
 
 .hero-video-wrapper .hero-video,
@@ -893,15 +891,31 @@ button {
 
 /* --- VISTA MÓVIL (hasta 768px de ancho) --- */
 @media (max-width: 768px) {
-  .hero-video-wrapper .hero-video {
-    object-fit: contain; /* Asegura que todo el video sea visible */
-    width: 100%; /* Opcional: Asegura que el ancho sea completo */
-    height: auto; /* Opcional: Ajusta la altura automáticamente */
+
+  /* 1. Ocultamos la versión de escritorio */
+  .header-socials-desktop {
+    display: none;
   }
 
-  /* Si aún tienes la imagen de fallback, asegúrate de que no interfiera */
-  .hero-video-wrapper .hero-img {
-     object-fit: contain; /* También para la imagen de fallback si la usas */
+  /* 2. Mostramos la versión móvil DENTRO del menú hamburguesa */
+  .nav-socials-mobile {
+    display: block;
+    /* Cambiamos de none a block para que sea visible */
+    margin-top: 20px;
+  }
+
+  .nav-socials-mobile .social-btn {
+    margin-bottom: 15px;
+    justify-content: center;
+    /* Centramos el contenido del botón */
+  }
+
+  /* Separador para el menú móvil */
+  .nav-separator {
+    width: 80%;
+    margin: 15px auto;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 }
 
