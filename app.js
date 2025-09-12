@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'arandanos-70', name: 'Arándanos', desc: 'Chocolate al 70% cacao con incrustaciones de arándanos antioxidantes.', price: 15.00, img: 'imagen/arandanos.jpg' },
     { id: 'almendras', name: 'Almendras Clásicas', desc: 'Chocolate con leche al 50% cacao con trozos generosos de almendras tostadas.', price: 15.00, img: 'imagen/almendras.jpg' },
     { id: 'cafe', name: 'Café de Altura', desc: 'Chocolate con leche al 50% fusionado con granos de café de origen único.', price: 15.00, img: 'imagen/cafe.jpg' },
+    { id: 'lúcuma', name: 'Lúcumas Clásicas', desc: 'Deliciosos trozos de lúcuma bañados con leche al 50% cacao.', price: 15.00, img: 'imagen/lucuma.jpg' },
+    { id: 'cerezas', name: 'Cerezas seleccionadas', desc: 'Chocolate con leche al 50% fusionado con cerezas de la mejor cosecha.', price: 15.00, img: 'imagen/cereza.jpg' },
     { id: 'arandanos-100g', name: 'Arándanos Bañados', desc: 'Arándanos jugosos sumergidos en nuestro más puro chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/arandanos-100.jpg' },
     { id: 'almendras-100g', name: 'Almendras Bañadas', desc: 'Almendras enteras tostadas, cubiertas por chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/almendras-100.jpg' },
   ];
