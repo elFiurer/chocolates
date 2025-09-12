@@ -227,29 +227,41 @@ button {
 
 /* Estilos para el logo principal */
 .logo {
-    /* Para Dancing Script: */
-    font-family: 'Dancing Script', cursive; /* Aplica la fuente */
-    /* Para Great Vibes: */
-    /* font-family: 'Great Vibes', cursive; */ /* Descomenta esta si usas Great Vibes */
+  /* Para Dancing Script: */
+  font-family: 'Dancing Script', cursive;
+  /* Aplica la fuente */
+  /* Para Great Vibes: */
+  /* font-family: 'Great Vibes', cursive; */
+  /* Descomenta esta si usas Great Vibes */
 
-    font-size: 2.8rem; /* Tamaño más grande para que destaque */
-    font-weight: 700; /* Negrita para Dancing Script, Great Vibes no lo necesita tanto */
-    color: var(--color-primary); /* Usa tu color principal o un dorado/bronce */
-    text-shadow:
-        0 0 5px rgba(255, 255, 255, 0.7), /* Un brillo sutil blanco */
-        0 0 10px rgba(255, 255, 255, 0.5), /* Otro brillo más extendido */
-        0 0 15px rgba(255, 255, 255, 0.3); /* Un halo más suave */
-    letter-spacing: 2px; /* Espaciado entre letras para elegancia */
-    transition: transform 0.3s ease-in-out; /* Animación sutil al pasar el mouse */
+  font-size: 2.8rem;
+  /* Tamaño más grande para que destaque */
+  font-weight: 700;
+  /* Negrita para Dancing Script, Great Vibes no lo necesita tanto */
+  color: var(--color-primary);
+  /* Usa tu color principal o un dorado/bronce */
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.7),
+    /* Un brillo sutil blanco */
+    0 0 10px rgba(255, 255, 255, 0.5),
+    /* Otro brillo más extendido */
+    0 0 15px rgba(255, 255, 255, 0.3);
+  /* Un halo más suave */
+  letter-spacing: 2px;
+  /* Espaciado entre letras para elegancia */
+  transition: transform 0.3s ease-in-out;
+  /* Animación sutil al pasar el mouse */
 }
 
 .logo:hover {
-    transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
-    color: #d4af37; /* Podrías cambiar a un dorado más intenso en hover */
-    text-shadow:
-        0 0 8px rgba(255, 255, 255, 0.9),
-        0 0 15px rgba(255, 255, 255, 0.7),
-        0 0 25px rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+  /* Ligeramente más grande al pasar el mouse */
+  color: #d4af37;
+  /* Podrías cambiar a un dorado más intenso en hover */
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 15px rgba(255, 255, 255, 0.7),
+    0 0 25px rgba(255, 255, 255, 0.5);
 }
 
 .nav-links {
@@ -318,11 +330,14 @@ button {
   position: relative;
   height: 100vh;
   display: flex;
-  align-items: center;   /* centrado vertical */
-  justify-content: flex-start; /* pegado a la izquierda */
+  align-items: center;
+  /* centrado vertical */
+  justify-content: flex-start;
+  /* pegado a la izquierda */
   text-align: left;
   color: var(--color-white);
-  padding-left: 5%;      /* espacio a la izquierda */
+  padding-left: 5%;
+  /* espacio a la izquierda */
 }
 
 .hero-video-wrapper {
@@ -335,13 +350,15 @@ button {
   z-index: -2;
 }
 
+.hero-video-wrapper .hero-video,
 .hero-video-wrapper .hero-img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* hace que la imagen se recorte y siempre cubra */
+  object-fit: cover;
+  /* El video se recortará para cubrir todo el espacio */
 }
 
 
@@ -359,18 +376,22 @@ button {
 .hero-content h1 {
   color: var(--color-white);
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  text-align: left;        /* texto alineado a la izquierda */
-  max-width: 600px;        /* ancho máximo para que no ocupe toda la pantalla */
-  margin-left: 5%; 
+  text-align: left;
+  /* texto alineado a la izquierda */
+  max-width: 600px;
+  /* ancho máximo para que no ocupe toda la pantalla */
+  margin-left: 5%;
 }
 
 .hero-content p {
   font-size: 1.2rem;
   max-width: 600px;
   margin: 1rem auto 2rem;
-  text-align: left;        /* texto alineado a la izquierda */
-  max-width: 600px;        /* ancho máximo para que no ocupe toda la pantalla */
-  margin-left: 5%; 
+  text-align: left;
+  /* texto alineado a la izquierda */
+  max-width: 600px;
+  /* ancho máximo para que no ocupe toda la pantalla */
+  margin-left: 5%;
 }
 
 .hero-buttons {
@@ -434,8 +455,9 @@ button {
 
 .product-image {
   width: 100%;
-  height: 340px; /* Aumenta este valor hasta que la imagen se vea como deseas */
-  object-fit: cover; 
+  height: 340px;
+  /* Aumenta este valor hasta que la imagen se vea como deseas */
+  object-fit: cover;
   transition: transform 0.5s ease;
 }
 
@@ -869,6 +891,7 @@ button {
 
 /* --- VISTA MÓVIL (hasta 768px de ancho) --- */
 @media (max-width: 768px) {
+
   /* 1. Ocultamos la versión de escritorio */
   .header-socials-desktop {
     display: none;
@@ -876,13 +899,15 @@ button {
 
   /* 2. Mostramos la versión móvil DENTRO del menú hamburguesa */
   .nav-socials-mobile {
-    display: block; /* Cambiamos de none a block para que sea visible */
+    display: block;
+    /* Cambiamos de none a block para que sea visible */
     margin-top: 20px;
   }
-  
+
   .nav-socials-mobile .social-btn {
-      margin-bottom: 15px;
-      justify-content: center; /* Centramos el contenido del botón */
+    margin-bottom: 15px;
+    justify-content: center;
+    /* Centramos el contenido del botón */
   }
 
   /* Separador para el menú móvil */
@@ -890,7 +915,7 @@ button {
     width: 80%;
     margin: 15px auto;
     border: none;
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -1101,6 +1126,7 @@ button {
   width: 30px;
   height: 30px;
 }
+
 /* --- Estilos para acciones en el resumen de pedido --- */
 .summary-item-actions {
   display: flex;
@@ -1122,9 +1148,12 @@ button {
   border: none;
   cursor: pointer;
 }
+
 .summary-item-actions .remove-item-btn:hover {
-  color: #c94a4a; /* Color rojo al pasar el mouse */
+  color: #c94a4a;
+  /* Color rojo al pasar el mouse */
 }
+
 /* ===========================================
    MEJORA VISUAL PARA EL BOTÓN 'ELIMINAR' EN CHECKOUT
    =========================================== */
@@ -1133,22 +1162,28 @@ button {
   font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
-  color: #c94a4a; /* Un tono de rojo sutil */
-  background-color: #fce8e8; /* Fondo rojo muy claro */
+  color: #c94a4a;
+  /* Un tono de rojo sutil */
+  background-color: #fce8e8;
+  /* Fondo rojo muy claro */
   padding: 6px 12px;
-  border-radius: 20px; /* Bordes redondeados estilo "píldora" */
+  border-radius: 20px;
+  /* Bordes redondeados estilo "píldora" */
   border: 1px solid #f8d7da;
   transition: all 0.2s ease;
   line-height: 1;
 }
 
 .summary-item-actions .remove-item-btn:hover {
-  background-color: #c94a4a; /* Fondo rojo más oscuro al pasar el mouse */
-  color: var(--color-white); /* Texto blanco */
+  background-color: #c94a4a;
+  /* Fondo rojo más oscuro al pasar el mouse */
+  color: var(--color-white);
+  /* Texto blanco */
   border-color: #c94a4a;
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 /* ===========================================
    MEJORA VISUAL PARA EL BOTÓN 'QUITAR' EN EL CARRITO LATERAL
    =========================================== */
@@ -1157,22 +1192,28 @@ button {
   font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
-  color: #c94a4a; /* Un tono de rojo sutil */
-  background-color: #fce8e8; /* Fondo rojo muy claro */
+  color: #c94a4a;
+  /* Un tono de rojo sutil */
+  background-color: #fce8e8;
+  /* Fondo rojo muy claro */
   padding: 6px 12px;
-  border-radius: 20px; /* Bordes redondeados */
+  border-radius: 20px;
+  /* Bordes redondeados */
   border: 1px solid #f8d7da;
   transition: all 0.2s ease;
   line-height: 1;
 }
 
 .cart-item-actions .remove-item-btn:hover {
-  background-color: #c94a4a; /* Fondo rojo más oscuro al pasar el mouse */
-  color: var(--color-white); /* Texto blanco */
+  background-color: #c94a4a;
+  /* Fondo rojo más oscuro al pasar el mouse */
+  color: var(--color-white);
+  /* Texto blanco */
   border-color: #c94a4a;
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 /* ===========================================
    NUEVO ESTILO DE BOTONES EN LA CABECERA
    =========================================== */
@@ -1181,27 +1222,30 @@ button {
 .header-icons {
   display: flex;
   align-items: center;
-  gap: 12px; /* Espacio entre los botones */
+  gap: 12px;
+  /* Espacio entre los botones */
 }
 
 /* Estilo base para los botones de redes sociales */
 .social-btn {
   display: flex;
   align-items: center;
-  gap: 8px; /* Espacio entre el ícono y el texto */
+  gap: 8px;
+  /* Espacio entre el ícono y el texto */
   padding: 10px 20px;
-  border-radius: 50px; /* Esto crea la forma de píldora */
+  border-radius: 50px;
+  /* Esto crea la forma de píldora */
   color: var(--color-white);
   font-weight: 600;
   font-size: 0.9rem;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .social-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Colores específicos para cada red social */
@@ -1214,24 +1258,29 @@ button {
 }
 
 /* Nuevo estilo para el botón del carrito */
-#cart-button, .cart-button {
+#cart-button,
+.cart-button {
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
-  border-radius: 50px; /* Misma forma de píldora */
+  border-radius: 50px;
+  /* Misma forma de píldora */
   padding: 10px;
   position: relative;
-  width: 50px; /* Ancho fijo */
-  height: 42px; /* Alto fijo */
+  width: 50px;
+  /* Ancho fijo */
+  height: 42px;
+  /* Alto fijo */
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
 
-#cart-button:hover, .cart-button:hover {
+#cart-button:hover,
+.cart-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Ajuste del contador del carrito */
@@ -1242,28 +1291,46 @@ button {
   height: 18px;
   font-size: 0.7rem;
 }
+
 /* --- ESTILOS DEFINITIVOS PARA EL BOTÓN DE DESCARGA DEL CATÁLOGO --- */
 .download-catalog-btn {
-    display: block !important; /* Asegura que se comporte como un bloque */
-    width: 100% !important; /* Ocupa todo el ancho */
-    padding: 10px 15px !important; /* Espaciado interno */
-    margin-top: 15px !important; /* Aumentamos la separación */
-    background-color: var(--color-primary) !important; /* Fondo claro y distintivo */
-    color: var(--color-white) !important; /* Texto blanco sobre el fondo */
-    border: none !important; /* Sin borde para un aspecto más limpio */
-    border-radius: var(--border-radius) !important; /* Bordes redondeados */
-    text-align: center !important; /* Centra el texto */
-    font-size: 0.95rem !important; /* Fuente ligeramente más grande */
-    font-weight: 700 !important; /* Negrita para el texto del botón */
-    cursor: pointer !important; /* Indica que es clickeable */
-    transition: background-color 0.3s ease, transform 0.2s ease !important; /* Transición suave */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Sombra más pronunciada para un efecto 3D */
+  display: block !important;
+  /* Asegura que se comporte como un bloque */
+  width: 100% !important;
+  /* Ocupa todo el ancho */
+  padding: 10px 15px !important;
+  /* Espaciado interno */
+  margin-top: 15px !important;
+  /* Aumentamos la separación */
+  background-color: var(--color-primary) !important;
+  /* Fondo claro y distintivo */
+  color: var(--color-white) !important;
+  /* Texto blanco sobre el fondo */
+  border: none !important;
+  /* Sin borde para un aspecto más limpio */
+  border-radius: var(--border-radius) !important;
+  /* Bordes redondeados */
+  text-align: center !important;
+  /* Centra el texto */
+  font-size: 0.95rem !important;
+  /* Fuente ligeramente más grande */
+  font-weight: 700 !important;
+  /* Negrita para el texto del botón */
+  cursor: pointer !important;
+  /* Indica que es clickeable */
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+  /* Transición suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  /* Sombra más pronunciada para un efecto 3D */
 }
 
 .download-catalog-btn:hover {
-    background-color: #6a4a3c !important; /* Un tono más oscuro de tu color primario en hover */
-    transform: translateY(-2px) !important; /* Ligero efecto de levantamiento */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important; /* Sombra más fuerte en hover */
+  background-color: #6a4a3c !important;
+  /* Un tono más oscuro de tu color primario en hover */
+  transform: translateY(-2px) !important;
+  /* Ligero efecto de levantamiento */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+  /* Sombra más fuerte en hover */
 }
 
 /* Opcional: Si quieres un botón completamente gris, usa esto en vez de lo de arriba: */
@@ -1297,35 +1364,44 @@ button {
 
 /* --- Tablets y Móviles (hasta 992px) --- */
 @media (max-width: 992px) {
+
   /* Hacemos que la navegación principal se transforme */
   .nav-links {
-    position: fixed; /* Se posiciona sobre todo el contenido */
+    position: fixed;
+    /* Se posiciona sobre todo el contenido */
     top: 0;
     right: 0;
-    width: 80%; /* Ocupa el 80% del ancho de la pantalla */
-    max-width: 350px; /* Ancho máximo para no ser demasiado grande */
-    height: 100vh; /* Ocupa toda la altura */
-    background-color: var(--color-white); /* Fondo blanco */
-    
+    width: 80%;
+    /* Ocupa el 80% del ancho de la pantalla */
+    max-width: 350px;
+    /* Ancho máximo para no ser demasiado grande */
+    height: 100vh;
+    /* Ocupa toda la altura */
+    background-color: var(--color-white);
+    /* Fondo blanco */
+
     /* Centramos los enlaces verticalmente */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2.5rem; /* Aumentamos el espacio entre enlaces */
-    
+    gap: 2.5rem;
+    /* Aumentamos el espacio entre enlaces */
+
     /* Por defecto, está oculto fuera de la pantalla a la derecha */
     transform: translateX(100%);
     transition: transform 0.35s ease-in-out;
-    
+
     /* Sombra para darle un efecto de profundidad */
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-    z-index: 1500; /* Se asegura que esté por encima de otros elementos */
+    z-index: 1500;
+    /* Se asegura que esté por encima de otros elementos */
   }
 
   /* Esta clase 'active' hará que el menú sea visible */
   .nav-links.active {
-    transform: translateX(0); /* Lo trae a la vista */
+    transform: translateX(0);
+    /* Lo trae a la vista */
   }
 
   /* Hacemos la fuente de los enlaces más grande para el móvil */
@@ -1336,7 +1412,8 @@ button {
   /* Mostramos el botón de hamburguesa en dispositivos móviles */
   .hamburger {
     display: block;
-    z-index: 1600; /* Debe estar por encima del menú para poder cerrarlo */
+    z-index: 1600;
+    /* Debe estar por encima del menú para poder cerrarlo */
   }
 
   /* Ocultamos los botones de redes sociales del escritorio */
@@ -1348,12 +1425,17 @@ button {
   .story-grid {
     grid-template-columns: 1fr;
   }
+
   .story-image {
-    display: block; /* Aseguramos que la imagen de la historia se vea */
-    order: -1; /* La colocamos antes del texto */
+    display: block;
+    /* Aseguramos que la imagen de la historia se vea */
+    order: -1;
+    /* La colocamos antes del texto */
   }
+
   .process-grid {
-    grid-template-columns: 1fr; /* Una columna para los pasos del proceso */
+    grid-template-columns: 1fr;
+    /* Una columna para los pasos del proceso */
   }
 }
 
@@ -1361,8 +1443,9 @@ button {
    AJUSTES ESPECIALES PARA MÓVILES (checkout)
    =========================== */
 @media (max-width: 768px) {
+
   /* Reducir padding general */
-  .checkout-flow > * {
+  .checkout-flow>* {
     padding: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -1372,6 +1455,7 @@ button {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .summary-item-img {
     width: 100%;
     height: auto;
@@ -1398,8 +1482,4 @@ button {
     width: 100%;
   }
 }
-@media (max-width: 768px) {
-  .hero-video-wrapper .hero-img {
-    content: url('imagen/portada-mobile.jpg');
-  }
-}
+
