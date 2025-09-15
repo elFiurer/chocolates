@@ -1,3 +1,4 @@
+// app.js
 document.addEventListener('DOMContentLoaded', () => {
 
   // ===================================
@@ -5,21 +6,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===================================
   const PRODUCTS = [
     { id: 'quinua-kiwicha', name: 'Quinua y Kiwicha', desc: 'Chocolate al 70% cacao con un crujiente mix de superalimentos andinos.', price: 15.00, img: 'imagen/quinua-kiwicha.jpg' },
-    { id: 'aguaymanto', name: 'Aguaymanto', desc: 'El balance perfecto entre el dulzor y la acidez del aguaymanto deshidratado.', price: 15.00, img: 'imagen/aguaymanto.jpg' },
-    { id: 'mix-frutas', name: 'Mix de Frutas', desc: 'Una explosión de sabores tropicales con nuestro chocolate al 70% cacao.', price: 15.00, img: 'imagen/mix-frutas.jpg' },
-    { id: 'pina', name: 'Piña Tropical', desc: 'Trozos de piña deshidratada que aportan un toque exótico a nuestro chocolate.', price: 15.00, img: 'imagen/pina.jpg' },
+    { id: 'mix-frutas', name: 'Mix de Frutas', desc: 'Una explosión de sabores tropicales con fruta deshidratada y chocolate al 70% cacao.', price: 15.00, img: 'imagen/mix-frutas.jpg' },
+    { id: 'chocolate dark', name: 'Chocolate Dark', desc: 'Deliciosa barra de chocolate al 70% cacao.', price: 15.00, img: 'imagen/chocolatedark.jpg' },
     { id: 'arandanos-70', name: 'Arándanos', desc: 'Chocolate al 70% cacao con incrustaciones de arándanos antioxidantes.', price: 15.00, img: 'imagen/arandanos.jpg' },
+    { id: 'cerezas', name: 'Cerezas seleccionadas', desc: 'Barra de chocolate al 70% de cacao fusionado con cerezas deshidratadas de la mejor cosecha.', price: 15.00, img: 'imagen/cereza.jpg' },
+    { id: 'pina', name: 'Piña Tropical', desc: 'Trozos de piña deshidratada que aportan un toque exótico a nuestro chocolate.', price: 15.00, img: 'imagen/pina.jpg' },
+    { id: 'lúcuma', name: 'Lúcumas Clásicas', desc: 'Deliciosos trozos de lúcuma bañados con leche al 50% cacao.', price: 15.00, img: 'imagen/lucuma.jpg' },
+    { id: 'aguaymanto', name: 'Aguaymanto', desc: 'El balance perfecto entre el dulzor y la acidez del aguaymanto deshidratado.', price: 15.00, img: 'imagen/aguaymanto.jpg' },
+    { id: 'almendras y maní', name: 'Almendras y Maní', desc: 'Deliciosa barra de chocolate con leche al 50% cacao, con granos de Almendras y Maní.', price: 15.00, img: 'imagen/almendrasymani.jpg' },
     { id: 'almendras', name: 'Almendras Clásicas', desc: 'Chocolate con leche al 50% cacao con trozos generosos de almendras tostadas.', price: 15.00, img: 'imagen/almendras.jpg' },
     { id: 'cafe', name: 'Café de Altura', desc: 'Chocolate con leche al 50% fusionado con granos de café de origen único.', price: 15.00, img: 'imagen/cafe.jpg' },
-    { id: 'lúcuma', name: 'Lúcumas Clásicas', desc: 'Deliciosos trozos de lúcuma bañados con leche al 50% cacao.', price: 15.00, img: 'imagen/lucuma.jpg' },
-    { id: 'cerezas', name: 'Cerezas seleccionadas', desc: 'Chocolate con leche al 50% fusionado con cerezas de la mejor cosecha.', price: 15.00, img: 'imagen/cereza.jpg' },
-    { id: 'chocolate dark', name: 'Chocolate Dark', desc: 'Deliciosa barra de chocolate al 70% cacao.', price: 15.00, img: 'imagen/chocolatedark.jpg' },
     { id: 'maní', name: 'Maní', desc: 'Deliciosa barra de chocolate con leche al 50% cacao, con granos de Maní.', price: 15.00, img: 'imagen/mani.jpg' },
-    { id: 'almendras y maní', name: 'Almendras y Maní', desc: 'Deliciosa barra de chocolate con leche al 50% cacao, con granos de Almendras y Maní.', price: 15.00, img: 'imagen/almendrasymani.jpg' },
     { id: 'Bombones de Frambuesa', name: 'Bombones Frambuesa', desc: 'Bombones de frambuesa liofilizados , doble chocolate 70% cacao', price: 15.00, img: 'imagen/frambuesa.jpg' },
-    { id: 'arandanos-100g', name: 'Arándanos Bañados', desc: 'Arándanos jugosos sumergidos en nuestro más puro chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/arandanos-100.jpg' },
     { id: 'almendras-100g', name: 'Almendras Bañadas', desc: 'Almendras enteras tostadas, cubiertas por chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/almendras-100.jpg' },
+    { id: 'arandanos-100g', name: 'Arándanos Bañados', desc: 'Arándanos deshidratados sumergidos en nuestro más puro chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/arandanos-100.jpg' },
   ];
+  // Nueva lista de productos que estarán "pronto disponibles"
+  const COMING_SOON_PRODUCTS = ['aguaymanto', 'pina', 'lúcuma', 'almendras y maní'];
+
   let cart = [];
   // ===================================
   // 2. FUNCIONES DE DATOS (Manipulan el carrito, no el DOM)
@@ -27,18 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveCart = () => localStorage.setItem('montcao_cart_v2', JSON.stringify(cart));
   const loadCart = () => { cart = JSON.parse(localStorage.getItem('montcao_cart_v2')) || []; };
 
-  const addToCart = (id, qty) => {
+  const addToCart = (id, qty, isReservation = false) => {
     const product = PRODUCTS.find(p => p.id === id);
     if (!product) return;
     const item = cart.find(i => i.id === id);
     if (item) {
       item.quantity += qty;
     } else {
-      cart.push({ id: product.id, name: product.name, price: product.price, img: product.img, quantity: qty });
+      cart.push({ id: product.id, name: product.name, price: product.price, img: product.img, quantity: qty, isReservation });
     }
     saveCart();
   };
-
   const updateCartItemQuantity = (id, newQty) => {
     const item = cart.find(i => i.id === id);
     if (!item) return;
@@ -79,33 +82,55 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cart.length === 0) {
         container.innerHTML = `<p class="empty-cart-message">Tu carrito está vacío.</p>`;
       } else {
-        container.innerHTML = cart.map(item => `
+        container.innerHTML = cart.map(item => {
+          const reservationText = item.isReservation ? ' <span class="reservation-text">(Reserva)</span>' : '';
+          return `
           <div class="cart-item" data-id="${item.id}">
             <img src="${item.img}" alt="${item.name}" class="cart-item-img">
             <div class="cart-item-details">
-              <p><strong>${item.name}</strong></p><p>${formatMoney(item.price)}</p>
+              <p><strong>${item.name}${reservationText}</strong></p><p>${formatMoney(item.price)}</p>
               <div class="cart-item-actions">
                 <div class="quantity-selector"><button class="quantity-btn" data-action="decrease">-</button><input type="number" class="quantity-input" value="${item.quantity}" readonly><button class="quantity-btn" data-action="increase">+</button></div>
                 <button class="remove-item-btn">Quitar</button>
               </div>
             </div>
-          </div>`).join('');
+          </div>`;
+        }).join('');
       }
       subtotalEl.textContent = formatMoney(calculateTotals().subtotal);
     };
 
     const renderProducts = () => {
-      catalogGrid.innerHTML = PRODUCTS.map(p => `
-        <div class="product-card" data-id="${p.id}">
-          <div class="product-image-container"><img src="${p.img}" alt="${p.name}" class="product-image"><button class="quick-view-btn">Vista Rápida</button></div>
-          <div class="product-info">
-            <h3 class="product-name">${p.name}</h3><p class="product-price">${formatMoney(p.price)}</p>
-            <div class="product-actions"><div class="quantity-selector"><button class="quantity-btn" data-action="decrease">-</button><input type="number" class="quantity-input" value="1" min="1" readonly><button class="quantity-btn" data-action="increase">+</button></div><button class="add-to-cart-btn">Añadir</button></div>
-          </div>
-          <a href="catalogo.pdf" download="Catalogo-Montcao.pdf" class="download-catalog-btn">
-    Descargar Catálogo
-</a>
-        </div>`).join('');
+      catalogGrid.innerHTML = PRODUCTS.map(p => {
+        const isComingSoon = COMING_SOON_PRODUCTS.includes(p.id);
+        const statusHtml = isComingSoon ? `<p class="product-status-text">Pronto disponible</p>` : '';
+        const actionHtml = isComingSoon
+          ? `<div class="product-actions"><button class="btn btn-coming-soon">Reserva ahora</button></div>`
+          : `<div class="product-actions">
+               <div class="quantity-selector">
+                 <button class="quantity-btn" data-action="decrease">-</button>
+                 <input type="number" class="quantity-input" value="1" min="1" readonly>
+                 <button class="quantity-btn" data-action="increase">+</button>
+               </div>
+               <button class="add-to-cart-btn">Añadir</button>
+             </div>`;
+        return `
+          <div class="product-card" data-id="${p.id}">
+            <div class="product-image-container">
+              <img src="${p.img}" alt="${p.name}" class="product-image">
+              <button class="quick-view-btn">Vista Rápida</button>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">${p.name}</h3>
+              <p class="product-price">${formatMoney(p.price)}</p>
+              ${statusHtml}
+              ${actionHtml}
+            </div>
+            <a href="catalogo.pdf" download="Catalogo-Montcao.pdf" class="download-catalog-btn">
+              Descargar Catálogo
+            </a>
+          </div>`;
+      }).join('');
     };
 
     const showToast = (message) => {
@@ -119,17 +144,33 @@ document.addEventListener('DOMContentLoaded', () => {
       cartButton.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.2)' }, { transform: 'scale(1)' }], { duration: 300 });
     };
     // --- Lógica del Modal (VISTA RÁPIDA) ---
+    // --- Lógica del Modal (VISTA RÁPIDA) ---
     const openModal = (id) => {
       const modal = document.getElementById('product-modal');
       const product = PRODUCTS.find(p => p.id === id);
       if (!product) return;
 
+      const isComingSoon = COMING_SOON_PRODUCTS.includes(id);
+      const modalActions = modal.querySelector('.modal-actions');
+
       modal.querySelector('#modal-img').src = product.img;
       modal.querySelector('#modal-name').textContent = product.name;
       modal.querySelector('#modal-price').textContent = formatMoney(product.price);
       modal.querySelector('#modal-desc').textContent = product.desc;
-      modal.querySelector('#modal-add-to-cart-btn').dataset.id = id;
-      modal.querySelector('.quantity-input').value = 1;
+
+      // Actualizar el botón y el input de cantidad en el modal
+      if (isComingSoon) {
+        modalActions.innerHTML = `<button class="btn btn-coming-soon">Pronto disponible</button>`;
+      } else {
+        modalActions.innerHTML = `
+          <div class="quantity-selector">
+            <button class="quantity-btn" data-action="decrease">-</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+            <button class="quantity-btn" data-action="increase">+</button>
+          </div>
+          <button id="modal-add-to-cart-btn" class="btn btn-primary" data-id="${id}">Agregar al Carrito</button>
+        `;
+      }
       modal.classList.add('active');
     };
 
@@ -168,11 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const id = card.dataset.id;
       const qtyInput = card.querySelector('.quantity-input');
 
-      // CAMBIO: Ahora escucha el clic en el contenedor de la imagen
-      if (e.target.closest('.product-image-container')) {
+      // Abre el modal al hacer clic en la imagen o el botón de vista rápida
+      if (e.target.closest('.product-image-container') || e.target.matches('.quick-view-btn')) {
         openModal(id);
       }
-
+      // Lógica para el botón "Añadir"
       if (e.target.matches('.add-to-cart-btn')) {
         addToCart(id, parseInt(qtyInput.value));
         showToast(`"${PRODUCTS.find(p => p.id === id).name}" agregado.`);
@@ -181,6 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSideCart();
         qtyInput.value = 1;
       }
+      // Lógica para el botón "Reserva ahora"
+      if (e.target.matches('.btn-coming-soon')) {
+        addToCart(id, 1, true); // Añade el producto como reserva
+        showToast(`"${PRODUCTS.find(p => p.id === id).name}" agregado como reserva.`);
+        flashCartIcon();
+        updateCartCount();
+        renderSideCart();
+      }
+      // Lógica para los botones de cantidad
       if (e.target.matches('.quantity-btn')) {
         let qty = parseInt(qtyInput.value);
         if (e.target.dataset.action === 'increase') qty++;
@@ -211,13 +261,15 @@ document.addEventListener('DOMContentLoaded', () => {
       // Lógica para el botón de "Agregar al Carrito"
       if (e.target.matches('#modal-add-to-cart-btn')) {
         const id = e.target.dataset.id;
-        const qty = parseInt(modal.querySelector('.quantity-input').value);
-        addToCart(id, qty);
-        showToast(`"${PRODUCTS.find(p => p.id === id).name}" agregado.`);
-        flashCartIcon();
-        updateCartCount();
-        renderSideCart();
-        closeModal();
+        if (!COMING_SOON_PRODUCTS.includes(id)) {
+          const qty = parseInt(modal.querySelector('.quantity-input').value);
+          addToCart(id, qty);
+          showToast(`"${PRODUCTS.find(p => p.id === id).name}" agregado.`);
+          flashCartIcon();
+          updateCartCount();
+          renderSideCart();
+          closeModal();
+        }
       }
     });
 

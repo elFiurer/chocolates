@@ -1483,3 +1483,33 @@ button {
   }
 }
 
+/* --- Nuevo estilo para el botón de productos próximos --- */
+.btn-coming-soon {
+  background-color: #e53935; /* Un tono de rojo */
+  color: #fff;
+  border: 1px solid #e53935;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: default;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-coming-soon:hover {
+  background-color: #d32f2f;
+}
+/* --- ESTILO PARA EL LOGO CON IMAGEN FORZADO --- */
+.logo-img {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo-img img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+}
