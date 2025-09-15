@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'almendras', name: 'Almendras Clásicas', desc: 'Chocolate con leche al 50% cacao con trozos generosos de almendras tostadas.', price: 15.00, img: 'imagen/almendras.jpg' },
     { id: 'cafe', name: 'Café de Altura', desc: 'Chocolate con leche al 50% fusionado con granos de café de origen único.', price: 15.00, img: 'imagen/cafe.jpg' },
     { id: 'maní', name: 'Maní', desc: 'Deliciosa barra de chocolate con leche al 50% cacao, con granos de Maní.', price: 15.00, img: 'imagen/mani.jpg' },
-    { id: 'Bombones de Frambuesa', name: 'Bombones Frambuesa', desc: 'Bombones de frambuesa liofilizados , doble chocolate 70% cacao', price: 15.00, img: 'imagen/frambuesa.jpg' },
+    { id: 'Bombones de Frambuesa', name: 'Bombones Frambuesa', desc: 'Bombones de frambuesa liofilizados , doble chocolate 70% cacao', price: 18.00, img: 'imagen/frambuesa.jpg' },
     { id: 'almendras-100g', name: 'Almendras Bañadas', desc: 'Almendras enteras tostadas, cubiertas por chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/almendras-100.jpg' },
     { id: 'arandanos-100g', name: 'Arándanos Bañados', desc: 'Arándanos deshidratados sumergidos en nuestro más puro chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/arandanos-100.jpg' },
   ];
