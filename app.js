@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const PRODUCTS = [
     { id: 'quinua-kiwicha', name: 'Quinua y Kiwicha', desc: 'Chocolate al 70% cacao con un crujiente mix de superalimentos andinos.', price: 15.00, img: 'imagen/quinua-kiwicha.jpg' },
     { id: 'mix-frutas', name: 'Mix de Frutas', desc: 'Una explosión de sabores tropicales con fruta deshidratada y chocolate al 70% cacao.', price: 15.00, img: 'imagen/mix-frutas.jpg' },
-    { id: 'chocolate dark', name: 'Chocolate Dark', desc: 'Deliciosa barra de chocolate al 70% cacao.', price: 15.00, img: 'imagen/chocolatedark.jpg' },
+    { id: 'chocolate dark', name: 'Chocolate Dark', desc: 'Deliciosa barra de chocolate oscuro al 70% cacao.', price: 15.00, img: 'imagen/chocolatedark.jpg' },
     { id: 'arandanos-70', name: 'Arándanos', desc: 'Chocolate al 70% cacao con incrustaciones de arándanos antioxidantes.', price: 15.00, img: 'imagen/arandanos.jpg' },
     { id: 'cerezas', name: 'Cerezas seleccionadas', desc: 'Barra de chocolate al 70% de cacao fusionado con cerezas deshidratadas de la mejor cosecha.', price: 15.00, img: 'imagen/cereza.jpg' },
     { id: 'pina', name: 'Piña Tropical', desc: 'Trozos de piña deshidratada que aportan un toque exótico a nuestro chocolate.', price: 15.00, img: 'imagen/pina.jpg' },
