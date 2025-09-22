@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. DATOS Y ESTADO DE LA APLICACIÓN
   // ===================================
   const PRODUCTS = [
-    { id: 'quinua-kiwicha', name: 'Quinua y Kiwicha', desc: 'Chocolate al 70% cacao con un crujiente mix de superalimentos andinos.', price: 15.00, img: 'imagen/quinua-kiwicha.jpg' },
-    { id: 'mix-frutas', name: 'Mix de Frutas', desc: 'Una explosión de sabores tropicales con fruta deshidratada y chocolate al 70% cacao.', price: 15.00, img: 'imagen/mix-frutas.jpg' },
+    { id: 'quinua-kiwicha', name: 'Quinua y Kiwicha', desc: 'Chocolate en barra al 70% cacao con un crujiente mix de superalimentos andinos.', price: 15.00, img: 'imagen/quinua-kiwicha.jpg' },
+    { id: 'mix-frutas', name: 'Mix de Frutas', desc: 'Una explosión de sabores tropicales en barra con fruta deshidratada y chocolate al 70% cacao.', price: 15.00, img: 'imagen/mix-frutas.jpg' },
     { id: 'chocolate dark', name: 'Chocolate Dark', desc: 'Deliciosa barra de chocolate oscuro al 70% cacao.', price: 15.00, img: 'imagen/chocolatedark.jpg' },
-    { id: 'arandanos-70', name: 'Arándanos', desc: 'Chocolate al 70% cacao con incrustaciones de arándanos antioxidantes.', price: 15.00, img: 'imagen/arandanos.jpg' },
+    { id: 'arandanos-70', name: 'Arándanos', desc: 'Chocolate en barra al 70% cacao con incrustaciones de arándanos antioxidantes.', price: 15.00, img: 'imagen/arandanos.jpg' },
     { id: 'cerezas', name: 'Cerezas seleccionadas', desc: 'Barra de chocolate al 70% de cacao fusionado con cerezas deshidratadas de la mejor cosecha.', price: 15.00, img: 'imagen/cereza.jpg' },
-    { id: 'pina', name: 'Piña Tropical', desc: 'Trozos de piña deshidratada que aportan un toque exótico a nuestro chocolate.', price: 15.00, img: 'imagen/pina.jpg' },
-    { id: 'lúcuma', name: 'Lúcumas Clásicas', desc: 'Deliciosos trozos de lúcuma bañados con leche al 50% cacao.', price: 15.00, img: 'imagen/lucuma.jpg' },
-    { id: 'aguaymanto', name: 'Aguaymanto', desc: 'El balance perfecto entre el dulzor y la acidez del aguaymanto deshidratado.', price: 15.00, img: 'imagen/aguaymanto.jpg' },
+    { id: 'pina', name: 'Piña Tropical', desc: 'En barra con trozos de piña deshidratada que aportan un toque exótico a nuestro chocolate.', price: 15.00, img: 'imagen/pina.jpg' },
+    { id: 'lúcuma', name: 'Lúcumas Clásicas', desc: 'Deliciosos trozos de lúcuma en barra bañados con leche al 50% cacao.', price: 15.00, img: 'imagen/lucuma.jpg' },
+    { id: 'aguaymanto', name: 'Aguaymanto', desc: 'Chocolate en barra con el balance perfecto entre el dulzor y la acidez del aguaymanto deshidratado.', price: 15.00, img: 'imagen/aguaymanto.jpg' },
     { id: 'almendras y maní', name: 'Almendras y Maní', desc: 'Deliciosa barra de chocolate con leche al 50% cacao, con granos de Almendras y Maní.', price: 15.00, img: 'imagen/almendrasymani.jpg' },
-    { id: 'almendras', name: 'Almendras Clásicas', desc: 'Chocolate con leche al 50% cacao con trozos generosos de almendras tostadas.', price: 15.00, img: 'imagen/almendras.jpg' },
-    { id: 'cafe', name: 'Café de Altura', desc: 'Chocolate con leche al 50% fusionado con granos de café de origen único.', price: 15.00, img: 'imagen/cafe.jpg' },
+    { id: 'almendras', name: 'Almendras Clásicas', desc: 'Chocolate en barra con leche al 50% cacao con trozos generosos de almendras tostadas.', price: 15.00, img: 'imagen/almendras.jpg' },
+    { id: 'cafe', name: 'Café de Altura', desc: 'Chocolate en barra con leche al 50% fusionado con granos de café de origen único.', price: 15.00, img: 'imagen/cafe.jpg' },
     { id: 'maní', name: 'Maní', desc: 'Deliciosa barra de chocolate con leche al 50% cacao, con granos de Maní.', price: 15.00, img: 'imagen/mani.jpg' },
     { id: 'Bombones de Frambuesa', name: 'Bombones Frambuesa', desc: 'Bombones de frambuesa liofilizados , doble chocolate 70% cacao', price: 18.00, img: 'imagen/frambuesa.jpg' },
     { id: 'almendras-100g', name: 'Almendras Bañadas', desc: 'Almendras enteras tostadas, cubiertas por chocolate al 70% cacao (100g).', price: 17.00, img: 'imagen/almendras-100.jpg' },
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const calculateTotals = () => {
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = subtotal > 0 && subtotal < 80 ? 8.00 : 0;
+    const shipping = 0;
     const grandTotal = subtotal + shipping;
     return { subtotal, shipping, grandTotal };
   };
