@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'Bombones de Frambuesa', name: 'Bombones Frambuesa', desc: 'Bombones de frambuesa liofilizados , doble chocolate 70% cacao', price: 18.90, img: 'imagen/frambuesa.jpg' },
     { id: 'almendras-100g', name: 'Almendras Bañadas', desc: 'Almendras enteras tostadas, cubiertas por chocolate al 70% cacao (100g).', price: 17.90, img: 'imagen/almendras-100.jpg' },
     { id: 'arandanos-100g', name: 'Arándanos Bañados', desc: 'Arándanos deshidratados sumergidos en nuestro más puro chocolate al 70% cacao (100g).', price: 17.90, img: 'imagen/arandanos-100.jpg' },
+    { id: 'quinua-pop-100g', name: 'Quinua Pop', desc: 'Crujiente quinua pop bañada en la intensidad de nuestro chocolate artesanal con 70% cacao. Una experiencia de sabor y textura única en cada bocado (100g).', price: 17.90, img: 'imagen/quinua-pop-100.jpg' },
   ];
   // Nueva lista de productos que estarán "pronto disponibles"
   const COMING_SOON_PRODUCTS = ['aguaymanto', 'pina', 'lúcuma', 'almendras y maní'];
