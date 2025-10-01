@@ -100,39 +100,62 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       subtotalEl.textContent = formatMoney(calculateTotals().subtotal);
     };
+    const renderProducts = (category = 'todos') => {
+      let filteredProducts = PRODUCTS;
 
-    const renderProducts = () => {
-      catalogGrid.innerHTML = PRODUCTS.map(p => {
+      if (category === 'barras') {
+        filteredProducts = PRODUCTS.filter(p => p.desc.toLowerCase().includes('barra'));
+      } else if (category === 'grajeas') {
+        filteredProducts = PRODUCTS.filter(p => p.desc.toLowerCase().includes('(100g)'));
+      } else if (category === 'bombones') {
+        filteredProducts = PRODUCTS.filter(p => p.desc.toLowerCase().includes('bombones'));
+      }
+
+      if (filteredProducts.length === 0) {
+        catalogGrid.innerHTML = `<p class="empty-category-message">No hay productos en esta categoría.</p>`;
+        return;
+      }
+
+      // 👇 ESTA ES LA PARTE QUE FALTABA
+      catalogGrid.innerHTML = filteredProducts.map(p => {
         const isComingSoon = COMING_SOON_PRODUCTS.includes(p.id);
+
         const statusHtml = isComingSoon ? `<p class="product-status-text">Pronto disponible</p>` : '';
+
         const actionHtml = isComingSoon
-          ? `<div class="product-actions"><button class="btn btn-coming-soon">Reserva ahora</button></div>`
-          : `<div class="product-actions">
-               <div class="quantity-selector">
-                 <button class="quantity-btn" data-action="decrease">-</button>
-                 <input type="number" class="quantity-input" value="1" min="1" readonly>
-                 <button class="quantity-btn" data-action="increase">+</button>
-               </div>
-               <button class="add-to-cart-btn">Añadir</button>
-             </div>`;
+          ? `<button class="btn btn-coming-soon" data-id="${p.id}">Reserva ahora</button>`
+          : `
+        <div class="product-actions">
+          <div class="quantity-selector">
+            <button class="quantity-btn" data-action="decrease">-</button>
+            <input type="number" class="quantity-input" value="1" min="1" readonly>
+            <button class="quantity-btn" data-action="increase">+</button>
+          </div>
+          <button class="btn btn-primary add-to-cart-btn">Añadir</button>
+        </div>
+      `;
+
         return `
-          <div class="product-card" data-id="${p.id}">
-            <div class="product-image-container">
-              <img src="${p.img}" alt="${p.name}" class="product-image">
-              <button class="quick-view-btn">Vista Rápida</button>
-            </div>
-            <div class="product-info">
-              <h3 class="product-name">${p.name}</h3>
-              <p class="product-price">${formatMoney(p.price)}</p>
-              ${statusHtml}
-              ${actionHtml}
-            </div>
-            <a href="catalogo.pdf" download="Catalogo-Montcao.pdf" class="download-catalog-btn">
-              Descargar Catálogo
-            </a>
-          </div>`;
+      <div class="product-card" data-id="${p.id}">
+        <div class="product-image-container">
+          <img src="${p.img}" alt="${p.name}" class="product-image">
+          <div class="product-overlay">
+            <button class="quick-view-btn">Vista Rápida</button>
+          </div>
+          ${statusHtml}
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">${p.name}</h3>
+          <p class="product-price">${formatMoney(p.price)}</p>
+          ${actionHtml}
+        </div>
+      </div>
+    `;
       }).join('');
     };
+
+    // Reemplaza la función original con esta versión mejorada
+
 
     const showToast = (message) => {
       const toast = document.getElementById('toast-notification');
@@ -204,6 +227,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+
+    // --- Lógica para el Menú de Categorías ---
+    const categoryMenu = document.querySelector('.category-menu');
+    if (categoryMenu) {
+      categoryMenu.addEventListener('click', e => {
+        const link = e.target.closest('a'); // Buscamos el enlace más cercano al clic
+        if (!link) return; // Si no se hizo clic en un enlace, no hacemos nada
+
+        const category = link.dataset.category;
+
+        // Si el enlace tiene una categoría para filtrar (no es el de promociones)
+        if (category) {
+          e.preventDefault(); // Evitamos que la página salte hacia arriba
+
+          // Actualizamos cuál es el elemento activo para que se vea resaltado
+          const activeLi = categoryMenu.querySelector('li.active');
+          if (activeLi) {
+            activeLi.classList.remove('active');
+          }
+          link.closest('li').classList.add('active');
+
+          // Finalmente, volvemos a dibujar los productos con el filtro aplicado
+          renderProducts(category);
+          document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
     catalogGrid.addEventListener('click', e => {
       const card = e.target.closest('.product-card');
       if (!card) return;

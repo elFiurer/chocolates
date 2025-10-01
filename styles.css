@@ -1513,3 +1513,92 @@ button {
     height: auto !important;
     display: block !important;
 }
+/* --- Estilos para el Menú de Categorías y Layout de Tienda --- */
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr; /* Columna fija para el menú, el resto para productos */
+  gap: 2rem;
+  align-items: flex-start; /* Alinea los items al inicio */
+  margin-top: 2rem;
+}
+
+.category-menu {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  position: sticky; /* Fija el menú al hacer scroll */
+  top: 20px;
+  border: 1px solid #0c0c0c;
+}
+
+.category-menu h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.category-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-menu li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s, color 0.3s;
+  border-left: 3px solid transparent; /* Borde para el estado activo */
+}
+
+.category-menu li a:hover {
+  background-color: #ece7e1;
+}
+
+/* ESTILO ACTIVO: Así se resalta la categoría seleccionada */
+.category-menu li.active a {
+  color: #8B4513; /* Un color marrón chocolate */
+  font-weight: 700;
+  border-left: 3px solid #8B4513;
+  background-color: #f5f0eb;
+}
+
+
+/* --- Estilos para la nueva sección de Promociones --- */
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.promo-card {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #999;
+  background-color: #fafafa;
+}
+
+/* --- Adaptación para Móviles (Responsive) --- */
+@media (max-width: 900px) {
+  .shop-layout {
+    grid-template-columns: 1fr; /* El menú se pondrá encima de los productos */
+  }
+  
+  .category-menu {
+    position: static; /* Quitamos el efecto "sticky" en móvil */
+    margin-bottom: 2rem;
+  }
+}
