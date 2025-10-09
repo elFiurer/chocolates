@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'almendras-100g', name: 'Almendras Bañadas', desc: 'Almendras enteras tostadas, cubiertas por chocolate al 70% cacao (100g).', price: 17.90, img: 'imagen/almendras-100.jpg' },
     { id: 'arandanos-100g', name: 'Arándanos Bañados', desc: 'Arándanos deshidratados sumergidos en nuestro más puro chocolate al 70% cacao (100g).', price: 17.90, img: 'imagen/arandanos-100.jpg' },
     { id: 'quinua-pop-100g', name: 'Quinua Pop', desc: 'Crujiente quinua pop bañada en la intensidad de nuestro chocolate artesanal con 70% cacao. Una experiencia de sabor y textura única en cada bocado (100g).', price: 17.90, img: 'imagen/quinua-pop-100.jpg' },
+    // EN APP.JS, REEMPLAZA LOS 4 PACKS ANTIGUOS CON ESTOS:
+
+    { id: 'Pack Bombones', name: 'Pack 3 Bombones frambuesa', desc: 'Un pack de degustación especial con nuestros 3 bombones más vendidos con el 70% de cacao. Ideal para descubrir tu favorito.', price: 50.90, img: 'imagen/pack1.jpg' },
+    { id: 'Pack Arándanos', name: 'Pack 3 Arándanos', desc: 'Este pack frutal combina 3 deliciosos chocolates con Arándanos deshidratados para los amantes del sabor intenso.', price: 48.90, img: 'imagen/pack2.jpg' },
+    { id: 'Pack Almendras', name: 'Pack 3 Almendras', desc: 'La combinación perfecta en un pack clásico nuestras almedras bañadas en Chocolate al 70% de cacao, te encantarán.', price: 48.90, img: 'imagen/pack3.jpg' },
+    { id: 'Pack  Quinua pop', name: 'Pack 3 Quinua pop', desc: 'El pack definitivo para una experiencia total. Prueba un sabor diferente y déjate llevar por su delicia.', price: 48.90, img: 'imagen/pack4.jpg' },
+    { id: 'Pack Mixto', name: 'Pack Arandanos, almendras y quinua pop', desc: 'La combinación perfecta en un solo pack, no por algo es el pack mas vendido, atrévete a probar algo distinto.', price: 48.90, img: 'imagen/pack5.jpg' },
+    //{ id: 'experiencia-total', name: 'Experiencia Total Montcao', desc: 'El pack definitivo para una experiencia total. Incluye 2 barras, 1 grajea y 1 bombón.', price: 65.00, img: 'imagen/pack4.jpg' }
   ];
   // Nueva lista de productos que estarán "pronto disponibles"
   const COMING_SOON_PRODUCTS = ['aguaymanto', 'pina', 'lúcuma', 'almendras y maní'];
@@ -100,7 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       subtotalEl.textContent = formatMoney(calculateTotals().subtotal);
     };
-    const renderProducts = (category = 'todos') => {
+    // REEMPLAZA tu antigua función renderProducts con esta versión mejorada
+
+    const renderProducts = (category = 'todos', targetElement = '#catalog-grid') => {
+      const grid = document.querySelector(targetElement);
+      if (!grid) return;
+
       let filteredProducts = PRODUCTS;
 
       if (category === 'barras') {
@@ -109,19 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
         filteredProducts = PRODUCTS.filter(p => p.desc.toLowerCase().includes('(100g)'));
       } else if (category === 'bombones') {
         filteredProducts = PRODUCTS.filter(p => p.desc.toLowerCase().includes('bombones'));
+      } else if (category === 'promociones') { // <-- Lógica para la nueva categoría
+        filteredProducts = PRODUCTS.filter(p => p.desc.toLowerCase().includes('pack'));
       }
 
       if (filteredProducts.length === 0) {
-        catalogGrid.innerHTML = `<p class="empty-category-message">No hay productos en esta categoría.</p>`;
+        grid.innerHTML = `<p class="empty-category-message">No hay productos en esta categoría.</p>`;
         return;
       }
 
-      // 👇 ESTA ES LA PARTE QUE FALTABA
-      catalogGrid.innerHTML = filteredProducts.map(p => {
+      grid.innerHTML = filteredProducts.map(p => {
         const isComingSoon = COMING_SOON_PRODUCTS.includes(p.id);
-
         const statusHtml = isComingSoon ? `<p class="product-status-text">Pronto disponible</p>` : '';
-
         const actionHtml = isComingSoon
           ? `<button class="btn btn-coming-soon" data-id="${p.id}">Reserva ahora</button>`
           : `
@@ -205,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Inicialización y Eventos ---
     renderProducts();
+    
     updateCartCount();
     renderSideCart();
     new Swiper('.review-slider', { loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true } });
